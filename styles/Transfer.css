@@ -1,0 +1,87 @@
+.transfer-title {
+  color: #3a3d42;
+  font-size: 18px;
+  font-weight: 700;
+}
+.transfer-content,
+.transfer-confirmation-content {
+  height: 578px;
+  background-color: white;
+  border-radius: 22px;
+}
+.detail-reciever-image {
+  width: 90px;
+  height: 90px;
+}
+.transfer-detail-name {
+  color: #4d4b57;
+  font-size: 20px;
+  font-weight: 700;
+}
+.transfer-detail-phone {
+  color: #7a7886;
+  font-size: 16px;
+}
+.input-search-name {
+  padding-left: 24px;
+  height: 42px;
+  background-color: rgb(58, 61, 66, 0.1);
+  border-radius: 8px;
+  border: none;
+}
+.transfer-intructure-text {
+  color: #7a7886;
+}
+.transfer-detail-input {
+  height: 56px;
+}
+.input-amount-transfer {
+  border: none;
+  font-size: 36px;
+  color: #b5bdcc;
+}
+.input-amount-transfer::placeholder {
+  color: #b5bdcc;
+}
+.balance-available {
+  color: #3a3d42;
+  font-size: 22px;
+  font-weight: 700;
+}
+.transfer-input-notes {
+  padding-left: 18px;
+  height: 36px;
+  font-size: 18px;
+  border: none;
+}
+.transfer-input-notes::placeholder {
+  color: #a9a9a9;
+}
+.input-note-transfer {
+  border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+}
+.button-continue-transfer {
+  border-radius: 12px;
+  background-color: #6379f4;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+.card-confirmation {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+.title-confirmation {
+  color: #3a3d42;
+  font-size: 16px;
+  font-weight: 700;
+}
+.title-card-content {
+  color: #514f5b;
+  font-size: 18px;
+  font-weight: 700;
+}
+.title-card-list {
+  color: #7a7886;
+  font-size: 14px;
+}

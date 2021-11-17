@@ -1,0 +1,119 @@
+* {
+  font-family: "Nunito Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.body-login {
+  width: 100%;
+  height: 100vh;
+}
+.jumbotron-login {
+  width: 55%;
+  height: 100%;
+  background-image: url("../assets/img/bg-jumbo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content-jumbotron {
+  width: 100%;
+  height: 70%;
+}
+.wrapper-jumbotron {
+  width: 100%;
+  height: 100%;
+}
+.bg-jumbotron {
+  width: 100%;
+  height: 100%;
+}
+.header-jumbotron {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+.img-jumbotron {
+  position: absolute;
+  /* width: 400px; */
+  height: 60%;
+}
+.jumbotron-h5 {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+.jumbotron-text {
+  bottom: 20px;
+}
+.jumbotron-p {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+.wrapper-login {
+  width: 60%;
+}
+.form-login {
+  width: 45%;
+}
+.header-login {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3a3d42;
+}
+.content-login {
+  font-size: 16px;
+  font-weight: 400;
+  color: #3a3d42;
+}
+.input-form-login {
+  border-bottom: 1px solid rgba(169, 169, 169, 0.6) !important;
+}
+.input-login {
+  height: 42px;
+  font-size: 16px;
+  color: #3a3d42;
+}
+.input-login::placeholder {
+  height: 42px;
+  font-size: 16px;
+  color: #a9a9a9;
+}
+.email-logo {
+  width: 28px;
+  height: 28px;
+}
+.forgot-password-login {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3a3d42;
+}
+.forgot-password-login:hover {
+  cursor: pointer;
+}
+.btn-auth {
+  background-color: #6379f4;
+  border: none;
+  border-radius: 8px;
+  height: 48px;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+.register-login-page {
+  font-size: 16px;
+  font-weight: 600;
+}
+.register-login {
+  color: #6379f4;
+}
+.register-login:hover {
+  cursor: pointer;
+}
+/* responsive */
+@media (max-width: 979px) {
+  .img-jumbotron {
+    position: absolute;
+    /* width: 400px; */
+    height: 50%;
+  }
+}
