@@ -13,9 +13,9 @@ export default function HomeDashboard() {
       <main className="d-flex align-items-center">
         <div className="wrapper-main-home mx-auto d-flex">
           <Sidebar />
-          {/* <TransferComponent /> */}
+          <TransferComponent />
           {/* <TransferByIdComponent /> */}
-          <TransferSummary />
+          {/* <TransferSummary /> */}
         </div>
       </main>
       <Footer />
