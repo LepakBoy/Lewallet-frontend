@@ -1,11 +1,12 @@
 const initialState = {
   id: "",
+  pin: "",
   isError: false,
   isLoading: false,
   msg: "",
 };
 
-const auth = (state = initialState, action) => {
+const authLogin = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_PENDING": {
       return {
@@ -21,10 +22,11 @@ const auth = (state = initialState, action) => {
         isError: false,
         isLoading: false,
         id: action.payload.data.data.id,
+        pin: action.payload.data.data.pin,
         msg: action.payload.data.msg,
       };
     }
-    case "REGISTER_REJECTED": {
+    case "LOGIN_REJECTED": {
       return {
         ...state,
         isError: true,
@@ -33,5 +35,10 @@ const auth = (state = initialState, action) => {
         msg: action.payload.response.data.msg,
       };
     }
+    default: {
+      return state;
+    }
   }
 };
+
+export default authLogin;

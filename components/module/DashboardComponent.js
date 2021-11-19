@@ -5,8 +5,16 @@ import ArrowUp from "assets/logo/arrow-up.png";
 import Plus from "assets/logo/plus.png";
 import ArrowDnGreen from "assets/logo/arrow-dn-green.png";
 import ImageUser from "assets/img/1.png";
+import { connect } from "react-redux";
 
-export default function DashboardComponent() {
+const DashboardComponent = (props) => {
+  const user = props.user;
+  const auth = props.auth;
+
+  const userPhone = user.user.data.noTelp;
+
+  console.log(auth, "data auth dari store di halaman dashboard");
+  console.log(user.user.data, "data user dari store di halaman dashboard");
   return (
     <div className="dashboar-content w-100 ms-3">
       <div
@@ -21,9 +29,9 @@ export default function DashboardComponent() {
       >
         <div className="dashboard-user-balance d-flex flex-column">
           <div className="user-balance-title user-balance">Balance</div>
-          <div className="user-balance-amount user-balance">Rp. 1.200.000</div>
+          <div className="user-balance-amount user-balance">{`Rp. ${user.user.data.balance}`}</div>
           <div className="user-balance-phone user-balance">
-            +62 5637 8882 9901
+            {user.user.data.noTelp ? userPhone : "no phone number"}
           </div>
         </div>
         <div className="dashboard-user-option">
@@ -120,4 +128,11 @@ export default function DashboardComponent() {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  user: state.dataUser,
+  auth: state.authData,
+});
+
+export default connect(mapStateToProps)(DashboardComponent);

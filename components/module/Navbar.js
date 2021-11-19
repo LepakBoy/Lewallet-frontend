@@ -2,19 +2,31 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Bell from "assets/logo/bell.png";
 import NavbarPhoto from "assets/img/navbar-poto.png";
+import { connect } from "react-redux";
+import DefaultPhoto from "assets/img/default.png";
 
-export default function Navbar() {
+const Navbar = (props) => {
+  const user = props.user;
+  console.log(user.user.data, "dari navbar");
+  const fullName = `${user.user.data.firstName} ${user.user.data.lastName}`;
+  const userPhone = user.user.data.noTelp;
   return (
     <nav className="navbar">
       <div className="wrapper-navbar d-flex justify-content-between">
         <div className="navbar-logo">Lewallet</div>
         <div className="navbar-profile d-flex justify-content-between">
-          <div className="navbar-photo-profile pe-4">
-            <Image src={NavbarPhoto} alt="photo" />
+          <div className="navbar-photo-profile me-4">
+            <Image
+              className="user-photo-navbar"
+              src={user.user.data.image ? DefaultPhoto : DefaultPhoto}
+              alt="photo"
+            />
           </div>
           <div className="navbar-contact-profile pe-4">
-            <div className="navbar-porfile-name">Robert Chandler</div>
-            <div className="navbar-porfile-phone">+62 8139 3877 7946</div>
+            <div className="navbar-porfile-name">{fullName}</div>
+            <div className="navbar-porfile-phone">
+              {user.user.data.noTelp ? userPhone : "no phone number"}
+            </div>
           </div>
           <div className="navbar-notification d-flex align-items-center">
             <Image
@@ -27,4 +39,10 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  user: state.dataUser,
+});
+
+export default connect(mapStateToProps)(Navbar);

@@ -11,32 +11,6 @@ export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
   // console.log(dataCookie.id, "datacokieeeeeeeee");
 
-  // const response = Promise.all([
-  //   axios.get(`/dashboard/${dataCookie.id}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${dataCookie.token}`,
-  //     },
-  //   }),
-  //   axios.get(`/user/profile/${dataCookie.id}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${dataCookie.token}`,
-  //     },
-  //   }),
-  //   axios.get(`/transaction/history?page=2&limit=2&filter=MONTH`, {
-  //     headers: {
-  //       Authorization: `Bearer ${dataCookie.token}`,
-  //     },
-  //   }),
-  // ]).then(async ([res1, res2, res3]) => {
-  //   const a = await res1;
-  //   const b = await res2;
-  //   const c = await res3;
-  //   return { a, b, c };
-  // });
-  // .catch((err) => {
-  //   return [];
-  // });
-
   return {
     props: { data: dataCookie },
   };

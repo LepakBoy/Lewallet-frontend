@@ -8,33 +8,45 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Cookie from "js-cookie";
 import { getUserById } from "stores/action/dataUser";
+import { authLogin } from "stores/action/auth";
 import { connect } from "react-redux";
 
 const Login = (props) => {
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
+  const [invalidAuth, setInvalidAuth] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/auth/login", form)
+
+    props
+      .authLogin(form)
       .then((res) => {
-        Cookie.set("token", res.data.data.token);
-        Cookie.set("id", res.data.data.id);
-        props.getUserById(res.data.data.id);
+        console.log(res.value.data.data, "respone auth");
+        Cookie.set("token", res.value.data.data.token);
+        Cookie.set("id", res.value.data.data.id);
+        // if (!res.data.data.pin) {
+        //   // ganti ke halaman create pin
+        //   // return router.push("/home/transfer");
+        // }
+        props.getUserById(res.value.data.data.id);
         router.push("/home/dashboard");
       })
       .catch((err) => {
         console.log(err.response.data.msg, "err");
+        setInvalidAuth(err.response.data.msg);
+        return;
       });
   };
+
+  console.log(invalidAuth, "invadli auth");
 
   const handleChageText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const user = props.user;
-  console.log(user.data.data, "data user dari store di halaman login");
+  // console.log(user.user.data, "data user dari store di halaman login");
   return (
     <body className="body-login d-flex">
       <Jumbotron />
@@ -77,6 +89,11 @@ const Login = (props) => {
             <div className="forgot-password text-end pt-3">
               <span className="forgot-password-login">Forgot Password?</span>
             </div>
+            {invalidAuth ? (
+              <div className="invalid-auth text-center ">
+                <span>{invalidAuth}</span>
+              </div>
+            ) : null}
             <button
               name="login"
               type="submit"
@@ -103,6 +120,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getUserById,
+  authLogin,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
