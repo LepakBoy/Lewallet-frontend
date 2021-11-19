@@ -7,7 +7,7 @@ module.exports = {
     return [
       {
         source: "/profile", //path sesudah diubah
-        destination: "/main/profile", //path sebelum diubah
+        destination: "/profile/profile", //path sebelum diubah
       },
     ];
   },

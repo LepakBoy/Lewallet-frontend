@@ -54,7 +54,7 @@ export default function TransferSummaryComponet() {
           </div>
         </div>
         <div className="button-continue mt-3 text-end">
-          <button className="button-continue-transfer px-5 py-3 border-0">
+          <button className="button-continue-transfer px-4 py-2 border-0">
             Continue
           </button>
         </div>

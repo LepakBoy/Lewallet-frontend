@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 main {
-  height: 90vh;
+  min-height: 90vh;
   /* padding-bottom: 40px; */
   background-color: #fafcff;
 }
@@ -45,12 +45,15 @@ main {
   background-color: white;
   border-radius: 22px;
 }
+span a {
+  text-decoration: none;
+}
 .side-bar-selected {
   color: #6379f4;
 }
 .side-bar-list {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
 }
 .side-bar-list:hover {
   cursor: pointer;

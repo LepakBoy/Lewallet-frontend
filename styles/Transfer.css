@@ -4,10 +4,27 @@
   font-weight: 700;
 }
 .transfer-content,
-.transfer-confirmation-content {
+.transfer-confirmation-content,
+.transfer-status-content {
   height: 578px;
   background-color: white;
   border-radius: 22px;
+}
+.status-notes {
+  color: #7a7886;
+  font-weight: 400;
+}
+.status-logo {
+  width: 60px;
+  height: 60px;
+}
+.transfer-status-alert {
+  color: #4d4b57;
+  font-weight: 700;
+  font-size: 16px;
+}
+.transfer-status-content {
+  height: 900px;
 }
 .detail-reciever-image {
   width: 90px;
@@ -64,8 +81,15 @@
   border-radius: 12px;
   background-color: #6379f4;
   color: white;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.button-download-pdf {
+  border-radius: 12px;
+  background-color: rgba(99, 121, 244, 0.15);
+  color: #6379f4;
+  font-weight: 400;
+  font-size: 16px;
 }
 .card-confirmation {
   border-radius: 10px;

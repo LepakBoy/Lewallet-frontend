@@ -6,6 +6,7 @@ import Jumbotron from "components/module/JumbotronAuth";
 import Vector from "assets/logo/Vector.png";
 import { useRouter } from "next/router";
 import axios from "utils/axios";
+import Link from "next/link";
 
 export default function Register() {
   const router = useRouter();
@@ -101,7 +102,9 @@ export default function Register() {
             </button>
             <div className="register-login-page text-center mt-3">
               Already have an account?
-              <span className="register-login">Let’s Login</span>
+              <span className="register-login">
+                <Link href="/auth/login"> Let’s Login</Link>
+              </span>
             </div>
           </form>
         </div>

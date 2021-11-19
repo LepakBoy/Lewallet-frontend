@@ -5,8 +5,12 @@ import Lock from "assets/logo/lock.png";
 import Jumbotron from "components/module/JumbotronAuth";
 import axios from "utils/axios";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Cookie from "js-cookie";
+import { getUserById } from "stores/action/dataUser";
+import { connect } from "react-redux";
 
-export default function Login() {
+const Login = (props) => {
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
 
@@ -15,11 +19,13 @@ export default function Login() {
     axios
       .post("/auth/login", form)
       .then((res) => {
-        console.log(res, "berhasil");
+        Cookie.set("token", res.data.data.token);
+        Cookie.set("id", res.data.data.id);
+        props.getUserById(res.data.data.id);
         router.push("/home/dashboard");
       })
       .catch((err) => {
-        console.log(err, "err");
+        console.log(err.response.data.msg, "err");
       });
   };
 
@@ -27,6 +33,8 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const user = props.user;
+  console.log(user.data.data, "data user dari store di halaman login");
   return (
     <body className="body-login d-flex">
       <Jumbotron />
@@ -78,11 +86,23 @@ export default function Login() {
             </button>
             <div className="register-login-page text-center mt-3">
               Don’t have an account?
-              <span className="register-login">Let’s Sign Up</span>
+              <span className="register-login">
+                <Link href="/auth/register">Let’s Sign Up</Link>
+              </span>
             </div>
           </form>
         </div>
       </div>
     </body>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  user: state.dataUser,
+});
+
+const mapDispatchToProps = {
+  getUserById,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

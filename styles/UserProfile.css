@@ -1,0 +1,61 @@
+.profile-content {
+  height: 578px;
+  background-color: white;
+  border-radius: 22px;
+}
+.user-profile-photo {
+  height: 80px;
+  width: 80px;
+  border-radius: 10px;
+}
+.user-profile-name {
+  color: #4d4b57;
+  font-weight: 700;
+  font-size: 22px;
+}
+.user-profile-phone {
+  color: #7a7886;
+  font-weight: 700;
+  font-size: 16px;
+}
+.user-profile-options {
+  min-height: 200px;
+}
+.profile-menu-list {
+  background-color: #e5e8ed;
+  border-radius: 10px;
+  color: #4d4b57;
+  font-size: 16px;
+  font-weight: 700;
+}
+.profile-menu-list:hover {
+  cursor: pointer;
+  background-color: #6379f4;
+  color: white;
+}
+.personal-header-title {
+  color: #3a3d42;
+  font-size: 18px;
+  font-weight: 700;
+}
+.personal-header-notes {
+  color: #7a7886;
+  font-size: 16px;
+  font-weight: 400;
+}
+.personal-card {
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+.personal-list-title {
+  color: #7a7886;
+  font-weight: 400;
+  font-size: 16px;
+}
+.personal-list-value {
+  color: #514f5b;
+  font-size: 20px;
+  font-weight: 700;
+}

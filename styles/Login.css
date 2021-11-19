@@ -105,6 +105,7 @@
 }
 .register-login {
   color: #6379f4;
+  text-decoration: none;
 }
 .register-login:hover {
   cursor: pointer;

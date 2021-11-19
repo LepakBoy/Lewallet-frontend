@@ -43,8 +43,8 @@ export default function TransferByIdComponent() {
             className="transfer-input-notes w-75"
           />
         </div>
-        <div className="button-continue mt-4 text-end">
-          <button className="button-continue-transfer px-5 py-3 border-0">
+        <div className="button-continue mt-5 text-end">
+          <button className="button-continue-transfer px-4 py-2 border-0">
             Continue
           </button>
         </div>
