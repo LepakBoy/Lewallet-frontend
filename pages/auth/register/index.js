@@ -7,6 +7,7 @@ import Vector from "assets/logo/Vector.png";
 import { useRouter } from "next/router";
 import axios from "utils/axios";
 import Link from "next/link";
+import { connect } from "react-redux";
 
 export default function Register() {
   const [invalidAuth, setInvalidAuth] = useState(false);
@@ -23,8 +24,9 @@ export default function Register() {
     axios
       .post("/auth/register", form)
       .then((res) => {
-        console.log(res, "res");
-        router.push("/auth/create-pin");
+        // console.log(res.data.data.id, "res");
+
+        router.push("/auth/login");
       })
       .catch((err) => {
         console.log(err.response.data.msg, "err");

@@ -9,6 +9,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { route } from "next/dist/server/router";
+import axios from "utils/axios";
 
 export default function Sidebar(props) {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function Sidebar(props) {
     localStorage.clear();
     Cookies.remove("id");
     Cookies.remove("token");
+    axios.post("/auth/logout");
     router.push("/home/dashboard");
 
     return;

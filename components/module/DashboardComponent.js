@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 const DashboardComponent = (props) => {
   const user = props.user;
   const auth = props.auth;
+  console.log(user);
+  console.log(auth);
   const { dashboard, history } = props;
   const userPhone = user.user.noTelp;
 

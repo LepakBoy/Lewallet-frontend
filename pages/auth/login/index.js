@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
 }
 
 const Login = (props) => {
+  const auth = props.auth;
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
   const [invalidAuth, setInvalidAuth] = useState(false);
@@ -40,12 +41,13 @@ const Login = (props) => {
       .then((res) => {
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
-        // if (!res.data.data.pin) {
-        //   // ganti ke halaman create pin
-        //   // return router.push("/home/transfer");
-        // }
         props.getUserById(res.value.data.data.id);
-        router.push("/home/dashboard");
+        console.log(auth, "pin ketika login");
+        if (!auth.pin) {
+          router.push("/auth/create-pin");
+        } else {
+          router.push("/home/dashboard");
+        }
       })
       .catch((err) => {
         setInvalidAuth(err.response.data.msg);
@@ -128,6 +130,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
   user: state.dataUser,
+  auth: state.authData,
 });
 
 const mapDispatchToProps = {

@@ -52,6 +52,9 @@
 .transfer-detail-input {
   height: 56px;
 }
+.input-search-name {
+  height: 48px;
+}
 .input-amount-transfer {
   border: none;
   font-size: 36px;

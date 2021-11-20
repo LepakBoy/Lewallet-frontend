@@ -1,4 +1,7 @@
+import axios from "utils/axios";
 import { useState } from "react";
+import { connect } from "react-redux";
+import { useRouter } from "next/router";
 
 const inputStyle = {
   width: "50px",
@@ -11,9 +14,12 @@ const inputContainer = {
   margin: "auto",
 };
 
-export default function CreatePin() {
+const CreatePinComponent = (props) => {
+  const router = useRouter();
+  const auth = props.auth;
+  const user = props.user;
+  //   console.log(auth, "crete pin");
   const [pin, setPin] = useState({});
-  const [allPin, setAllPin] = useState("");
 
   const addPin = (event) => {
     if (event.target.value) {
@@ -29,18 +35,25 @@ export default function CreatePin() {
     setPin({ ...pin, [`pin${event.target.name}`]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setAllPin(
-      `${pin.pin1}${pin.pin2}${pin.pin3}${pin.pin4}${pin.pin5}${pin.pin6}`
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const allPin = parseInt(
+      pin.pin1 + pin.pin2 + pin.pin3 + pin.pin4 + pin.pin5 + pin.pin6
     );
-    console.log(allPin, "allpiiiinnnnnnn");
+    console.log(user.user.id, "allpiiiinnnnnnn");
+    axios
+      .patch(`/user/pin/${user.user.id}`, { pin: allPin })
+      .then((res) => {
+        router.push("/auth/login");
+      })
+      .catch((err) => {
+        alert("gagal");
+        console.log(err, "err");
+      });
   };
 
-  //   console.log(pin.pin1, "piiiinnnnnnn");
-  //   console.log(allPin, "state allpiiiinnnnnnn");
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="container text-center">
         <div className="mt-3">
           <div style={inputContainer}>
@@ -103,6 +116,7 @@ export default function CreatePin() {
           </div>
         </div>
         <button
+          onClick={(e) => handleSubmit(e)}
           name="login"
           type="submit"
           className="w-100 mt-5 btn-login btn-auth"
@@ -112,4 +126,11 @@ export default function CreatePin() {
       </div>
     </form>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.authData,
+  user: state.dataUser,
+});
+
+export default connect(mapStateToProps)(CreatePinComponent);
