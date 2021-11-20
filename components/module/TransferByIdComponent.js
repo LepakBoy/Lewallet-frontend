@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ImageUser from "assets/img/1.png";
 import Pencil from "assets/logo/pencil.png";
+import { connect } from "react-redux";
 
-export default function TransferByIdComponent() {
+const TransferByIdComponent = (props) => {
+  const user = props.user;
+  console.log(user);
+
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
       <div className="transfer-header">
@@ -16,8 +20,8 @@ export default function TransferByIdComponent() {
           alt="history-img"
         />
         <div className="detail-reciever ms-3 pt-2">
-          <div className="transfer-detail-name">Samuel Suhi</div>
-          <div className="transfer-detail-phone">+62 813-8492-9994</div>
+          <div className="transfer-detail-name">aa</div>
+          <div className="transfer-detail-phone">1111</div>
         </div>
       </div>
       <div className="tranfer-instructure mt-5">
@@ -33,7 +37,7 @@ export default function TransferByIdComponent() {
           placeholder="0.00"
         />
         <div className="balance-amount-availabel mt-4">
-          <span className="balance-available">Rp.120.000 Available</span>
+          <span className="balance-available">{`Rp. ${user.user.balance} Available`}</span>
         </div>
         <div className="input-note-transfer mt-4 w-75 mx-auto">
           <Image src={Pencil} alt="pencil" />
@@ -51,4 +55,10 @@ export default function TransferByIdComponent() {
       </div>
     </div>
   );
-}
+};
+
+const mapSateToProps = (state) => ({
+  user: state.dataUser,
+});
+
+export default connect(mapSateToProps)(TransferByIdComponent);

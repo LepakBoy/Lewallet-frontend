@@ -36,7 +36,7 @@ export default function Sidebar(props) {
         <div className="side-bar-menu pt-5 d-flex align-items-center">
           <Image src={ArrowUp} alt="" />
           <span className="side-bar-list ps-4">
-            <Link href="/home/transfer">Transfer</Link>
+            <Link href="/transfer">Transfer</Link>
           </span>
         </div>
         <div className="side-bar-menu pt-5 d-flex align-items-center">

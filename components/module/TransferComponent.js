@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ImageUser from "assets/img/1.png";
 import axios from "utils/axios";
+import { useRouter } from "next/router";
 
 export default function TransferComponent() {
+  const router = useRouter();
   const [search, setSearch] = useState(null);
   const [nodata, setNodata] = useState(false);
   const [data, setData] = useState([]);
@@ -32,6 +34,13 @@ export default function TransferComponent() {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const handleTransferById = (idUser) => {
+    router.push({
+      pathname: "/transfer/[id]",
+      query: { id: idUser },
+    });
+    console.log(idUser, "coba id");
   };
 
   // console.log(data, "hasil");
@@ -63,7 +72,11 @@ export default function TransferComponent() {
           <h3>ga ada</h3>
         ) : (
           data.map((item) => (
-            <div className="list-detail-history d-flex mt-4" key={item.id}>
+            <div
+              className="list-detail-history d-flex mt-4"
+              key={item.id}
+              onClickCapture={() => handleTransferById(item.id)}
+            >
               <Image
                 className="list-history-img"
                 src={ImageUser}

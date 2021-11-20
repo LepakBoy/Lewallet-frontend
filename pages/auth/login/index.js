@@ -43,7 +43,7 @@ const Login = (props) => {
         Cookie.set("id", res.value.data.data.id);
         props.getUserById(res.value.data.data.id);
         console.log(auth, "pin ketika login");
-        if (!auth.pin) {
+        if (res.value.data.data.pin === null) {
           router.push("/auth/create-pin");
         } else {
           router.push("/home/dashboard");
