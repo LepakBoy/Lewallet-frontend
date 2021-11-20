@@ -3,7 +3,8 @@
   background-color: white;
   border-radius: 22px;
 }
-.user-profile-photo {
+
+.imageStyle {
   height: 80px;
   width: 80px;
   border-radius: 10px;

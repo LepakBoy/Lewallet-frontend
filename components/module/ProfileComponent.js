@@ -4,24 +4,30 @@ import ImageNavbar from "assets/img/navbar-poto.png";
 import ArrowLeft from "assets/logo/arrow-left.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { connect } from "react-redux";
+import DefaultPhoto from "assets/img/default.png";
 
-export default function ProfileComponent(props) {
+const ProfileComponent = (props) => {
   const router = useRouter();
   const personalInfo = () => {
     router.push("/profile/personalinformation");
   };
+  const user = props.user;
+  const fullName = `${user.user.firstName} ${user.user.lastName}`;
+  const userPhone = user.user.noTelp;
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
       <div className="user-profile-header text-center mt-4">
-        <Image
-          src={ImageNavbar}
-          alt="user-photo"
-          className="user-profile-photo"
-        />
-        <span className="user-profile-name d-block mt-4">Robert Chandler</span>
+        <div className="imageStyle mx-auto">
+          <Image
+            src={user.user.image ? DefaultPhoto : DefaultPhoto}
+            alt="user-photo"
+          />
+        </div>
+        <span className="user-profile-name d-block mt-4">{fullName}</span>
         <span className="user-profile-phone d-block mt-3">
-          +62 813-9387-7946
+          {user.user.noTelp ? userPhone : "no phone number"}
         </span>
       </div>
       <div className="user-profile-options w-50 mx-auto mt-4">
@@ -73,4 +79,10 @@ export default function ProfileComponent(props) {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  user: state.dataUser,
+});
+
+export default connect(mapStateToProps)(ProfileComponent);

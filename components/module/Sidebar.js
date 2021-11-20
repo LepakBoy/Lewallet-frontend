@@ -6,8 +6,22 @@ import Plus from "assets/logo/plus.png";
 import UserLogo from "assets/logo/user.png";
 import LogOut from "assets/logo/log-out.png";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import { route } from "next/dist/server/router";
 
 export default function Sidebar(props) {
+  const router = useRouter();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    Cookies.remove("id");
+    Cookies.remove("token");
+    router.push("/home/dashboard");
+
+    return;
+  };
+
   return (
     <div className="side-bar">
       <div className="wrapper-side-bar p-4">
@@ -42,7 +56,9 @@ export default function Sidebar(props) {
               "
         >
           <Image src={LogOut} alt="" />
-          <span className="side-bar-list ps-4">Logout</span>
+          <span className="side-bar-list ps-4" onClick={handleLogout}>
+            Logout
+          </span>
         </div>
       </div>
     </div>

@@ -10,11 +10,9 @@ import { connect } from "react-redux";
 const DashboardComponent = (props) => {
   const user = props.user;
   const auth = props.auth;
+  const { dashboard, history } = props;
+  const userPhone = user.user.noTelp;
 
-  const userPhone = user.user.data.noTelp;
-
-  console.log(auth, "data auth dari store di halaman dashboard");
-  console.log(user.user.data, "data user dari store di halaman dashboard");
   return (
     <div className="dashboar-content w-100 ms-3">
       <div
@@ -29,9 +27,9 @@ const DashboardComponent = (props) => {
       >
         <div className="dashboard-user-balance d-flex flex-column">
           <div className="user-balance-title user-balance">Balance</div>
-          <div className="user-balance-amount user-balance">{`Rp. ${user.user.data.balance}`}</div>
+          <div className="user-balance-amount user-balance">{`Rp. ${user.user.balance}`}</div>
           <div className="user-balance-phone user-balance">
-            {user.user.data.noTelp ? userPhone : "no phone number"}
+            {user.user.noTelp ? userPhone : "no phone number"}
           </div>
         </div>
         <div className="dashboard-user-option">
@@ -54,7 +52,11 @@ const DashboardComponent = (props) => {
               />
               <span className="span-d-block d-block">Income</span>
 
-              <span className="chart-income-amount d-block">Rp. 2.150.000</span>
+              <span className="chart-income-amount d-block">
+                {dashboard.totalIncome
+                  ? `Rp. ${dashboard.totalIncome}`
+                  : `Rp. 0`}
+              </span>
             </div>
             <div className="chart-expense">
               <Image
@@ -64,7 +66,9 @@ const DashboardComponent = (props) => {
               />
               <span className="span-d-block d-block">Expense</span>
               <span className="chart-expense-amount d-block">
-                Rp. 1.560.000
+                {dashboard.totalExpense
+                  ? `Rp. ${dashboard.totalExpense}`
+                  : `Rp. 0`}
               </span>
             </div>
           </div>
@@ -76,7 +80,29 @@ const DashboardComponent = (props) => {
             <div className="see-all">See all</div>
           </div>
           {/* mapping from here */}
-          <div className="list-detail-history d-flex mt-4">
+          {history.data.length < 1 ? (
+            <div className="list-detail-history d-flex mt-4 text-center justify-content-center">
+              <div className="list-history-name">No History Data</div>
+            </div>
+          ) : (
+            history.data.map((item) => {
+              <div className="list-detail-history d-flex mt-4">
+                <Image
+                  className="list-history-img"
+                  src={ImageUser}
+                  alt="history-img"
+                />
+                <div className="detail-histroy-name ms-3 w-50">
+                  <div className="list-history-name">Samuel Suhi</div>
+                  <div className="list-history-status">Accept</div>
+                </div>
+                <div className="list-history-amount w-50 text-end">
+                  +Rp.60.000
+                </div>
+              </div>;
+            })
+          )}
+          {/* <div className="list-detail-history d-flex mt-4">
             <Image
               className="list-history-img"
               src={ImageUser}
@@ -87,8 +113,8 @@ const DashboardComponent = (props) => {
               <div className="list-history-status">Accept</div>
             </div>
             <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div>
-          <div className="list-detail-history d-flex mt-4">
+          </div> */}
+          {/* <div className="list-detail-history d-flex mt-4">
             <Image
               className="list-history-img"
               src={ImageUser}
@@ -99,8 +125,8 @@ const DashboardComponent = (props) => {
               <div className="list-history-status">Accept</div>
             </div>
             <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div>
-          <div className="list-detail-history d-flex mt-4">
+          </div> */}
+          {/* <div className="list-detail-history d-flex mt-4">
             <Image
               className="list-history-img"
               src={ImageUser}
@@ -111,19 +137,7 @@ const DashboardComponent = (props) => {
               <div className="list-history-status">Accept</div>
             </div>
             <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div>
-          <div className="list-detail-history d-flex mt-4">
-            <Image
-              className="list-history-img"
-              src={ImageUser}
-              alt="history-img"
-            />
-            <div className="detail-histroy-name ms-3 w-50">
-              <div className="list-history-name">Samuel Suhi</div>
-              <div className="list-history-status">Accept</div>
-            </div>
-            <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

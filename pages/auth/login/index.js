@@ -3,13 +3,29 @@ import Image from "next/image";
 import Email from "assets/logo/mail.png";
 import Lock from "assets/logo/lock.png";
 import Jumbotron from "components/module/JumbotronAuth";
-import axios from "utils/axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Cookie from "js-cookie";
 import { getUserById } from "stores/action/dataUser";
 import { authLogin } from "stores/action/auth";
 import { connect } from "react-redux";
+import { getDataCookie } from "middleware/authorizationPage";
+
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+
+  if (dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/home/dashboard",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { data: dataCookie },
+  };
+}
 
 const Login = (props) => {
   const router = useRouter();
@@ -22,7 +38,6 @@ const Login = (props) => {
     props
       .authLogin(form)
       .then((res) => {
-        console.log(res.value.data.data, "respone auth");
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
         // if (!res.data.data.pin) {
@@ -33,13 +48,10 @@ const Login = (props) => {
         router.push("/home/dashboard");
       })
       .catch((err) => {
-        console.log(err.response.data.msg, "err");
         setInvalidAuth(err.response.data.msg);
         return;
       });
   };
-
-  console.log(invalidAuth, "invadli auth");
 
   const handleChageText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

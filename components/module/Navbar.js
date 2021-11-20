@@ -7,9 +7,9 @@ import DefaultPhoto from "assets/img/default.png";
 
 const Navbar = (props) => {
   const user = props.user;
-  console.log(user.user.data, "dari navbar");
-  const fullName = `${user.user.data.firstName} ${user.user.data.lastName}`;
-  const userPhone = user.user.data.noTelp;
+  // console.log(user.user.data.firstName, "dari navbar");
+  const fullName = `${user.user.firstName} ${user.user.lastName}`;
+  const userPhone = user.user.noTelp;
   return (
     <nav className="navbar">
       <div className="wrapper-navbar d-flex justify-content-between">
@@ -18,14 +18,14 @@ const Navbar = (props) => {
           <div className="navbar-photo-profile me-4">
             <Image
               className="user-photo-navbar"
-              src={user.user.data.image ? DefaultPhoto : DefaultPhoto}
+              src={user.user.image ? DefaultPhoto : DefaultPhoto}
               alt="photo"
             />
           </div>
           <div className="navbar-contact-profile pe-4">
             <div className="navbar-porfile-name">{fullName}</div>
             <div className="navbar-porfile-phone">
-              {user.user.data.noTelp ? userPhone : "no phone number"}
+              {user.user.noTelp ? userPhone : "no phone number"}
             </div>
           </div>
           <div className="navbar-notification d-flex align-items-center">

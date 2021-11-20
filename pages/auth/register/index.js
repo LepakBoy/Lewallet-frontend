@@ -9,6 +9,7 @@ import axios from "utils/axios";
 import Link from "next/link";
 
 export default function Register() {
+  const [invalidAuth, setInvalidAuth] = useState(false);
   const router = useRouter();
   const [form, setForm] = useState({
     firstName: "",
@@ -23,10 +24,11 @@ export default function Register() {
       .post("/auth/register", form)
       .then((res) => {
         console.log(res, "res");
-        router.push("/auth/login");
+        router.push("/auth/create-pin");
       })
       .catch((err) => {
-        console.log(err, "err");
+        console.log(err.response.data.msg, "err");
+        setInvalidAuth(err.response.data.msg);
       });
   };
 
@@ -93,6 +95,11 @@ export default function Register() {
                 className="input-password input-login w-100 border-0 ps-4"
               />
             </div>
+            {invalidAuth ? (
+              <div className="invalid-auth text-center mt-2">
+                <span>{invalidAuth}</span>
+              </div>
+            ) : null}
             <button
               name="login"
               type="submit"
