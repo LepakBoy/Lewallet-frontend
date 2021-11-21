@@ -3,6 +3,24 @@ import Navbar from "components/module/Navbar";
 import Sidebar from "components/module/Sidebar";
 import Footer from "components/module/Footer";
 import ChangePasswordComponent from "components/module/ChangePasswordComponent";
+import { getDataCookie } from "middleware/authorizationPage";
+
+export async function getServerSideProps(context) {
+  console.log("ssr is running");
+  const dataCookie = await getDataCookie(context);
+
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default function Profile() {
   return (

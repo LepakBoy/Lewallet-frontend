@@ -6,6 +6,23 @@ import TransferSummary from "components/module/TransferSummaryComponent";
 import TransferByIdComponent from "components/module/TransferByIdComponent";
 import TransferStatusComponent from "components/module/TransferStatusComponent";
 import Footer from "components/module/Footer";
+import { getDataCookie } from "middleware/authorizationPage";
+
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default function HomeDashboard() {
   return (

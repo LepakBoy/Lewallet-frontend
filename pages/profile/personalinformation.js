@@ -8,6 +8,14 @@ import axios from "utils/axios";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
 
   const response = await axios
     .get(`/user/profile/${dataCookie.id}`, {

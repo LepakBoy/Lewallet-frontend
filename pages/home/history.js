@@ -3,7 +3,23 @@ import Navbar from "components/module/Navbar";
 import Sidebar from "components/module/Sidebar";
 import HistoryComponent from "components/module/HistoryComponent";
 import Footer from "components/module/Footer";
+import { getDataCookie } from "middleware/authorizationPage";
 
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 export default function HomeDashboard() {
   return (
     <body>

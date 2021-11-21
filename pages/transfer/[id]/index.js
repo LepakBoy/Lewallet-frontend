@@ -8,6 +8,23 @@ import TransferStatusComponent from "components/module/TransferStatusComponent";
 import Footer from "components/module/Footer";
 import { useRouter } from "next/router";
 import axios from "utils/axios";
+import { getDataCookie } from "middleware/authorizationPage";
+
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default function TransferByIdUser() {
   const router = useRouter();
