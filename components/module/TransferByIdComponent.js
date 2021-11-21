@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ImageUser from "assets/img/1.png";
 import Pencil from "assets/logo/pencil.png";
@@ -8,9 +8,9 @@ const TransferByIdComponent = (props) => {
   const id = props.id;
   // console.log(id, "apyaaaaaaaaaaaa");
   const user = props.user;
-  const [dataReciever, setDataReciever] = useState([]);
+  // const [dataReciever, setDataReciever] = useState([]);
   // console.log(user);
-  console.log(props, "data revieceerer");
+  // console.log(props, "proops");
 
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
@@ -24,8 +24,12 @@ const TransferByIdComponent = (props) => {
           alt="history-img"
         />
         <div className="detail-reciever ms-3 pt-2">
-          <div className="transfer-detail-name">{props.data.firstName}</div>
-          <div className="transfer-detail-phone">1111</div>
+          <div className="transfer-detail-name">
+            {props.data.firstName ? props.data.firstName : "reciever name"}
+          </div>
+          <div className="transfer-detail-phone">
+            {props.data.noTelp ? props.data.noTelp : "no phone number"}
+          </div>
         </div>
       </div>
       <div className="tranfer-instructure mt-5">

@@ -1,8 +1,14 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function PersonalInformationComponent(props) {
+  const router = useRouter();
   const dataUser = props.data;
   const userPhone = dataUser.noTelp;
+
+  const toManagePhone = () => {
+    router.push("/profile/managePhone");
+  };
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
@@ -28,14 +34,16 @@ export default function PersonalInformationComponent(props) {
           <span className="personal-list-title">Email</span>
           <span className="personal-list-value">{dataUser.email}</span>
         </div>
-        <div className="card personal-card personal-first-name p-2 my-3 d-flex">
+        <div className="card personal-card personal-first-name p-2 my-3 d-flex ">
           <div className="phone-detail-list w-50">
             <span className="personal-list-title d-block">Phone Number</span>
             <span className="personal-list-value">
               {dataUser.noTelp ? userPhone : "no phone number"}
             </span>
           </div>
-          {/* <span class="manage-phone-option">Manage</span>  */}
+          <span className="manage-phone-option w-50" onClick={toManagePhone}>
+            Manage
+          </span>
         </div>
       </div>
     </div>

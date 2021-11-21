@@ -64,3 +64,6 @@
   font-size: 20px;
   font-weight: 700;
 }
+.manage-phone-option:hover {
+  cursor: pointer;
+}

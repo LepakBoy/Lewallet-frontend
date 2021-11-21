@@ -6,6 +6,7 @@ import "../styles/HomeTemplate.css";
 import "../styles/Transfer.css";
 import "../styles/UserProfile.css";
 import "../styles/ChangePass.css";
+import "../styles/ManagePhone.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "stores/store";
 import { PersistGate } from "redux-persist/integration/react";
