@@ -1,0 +1,21 @@
+.input-pass-config::placeholder {
+  color: #a9a9a9;
+}
+.input-pass-config {
+  padding-left: 12px;
+  height: 40px;
+  font-size: 16px;
+
+  border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+}
+.lock-logo {
+  width: 36px;
+  height: 36px;
+}
+.button-change-pass {
+  height: 48px;
+  color: white;
+  background-color: #6379f4;
+  border-radius: 12px;
+  font-size: 16px;
+}

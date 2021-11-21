@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Image from "next/image";
 import ImageNavbar from "assets/img/navbar-poto.png";
@@ -6,22 +7,48 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
 import DefaultPhoto from "assets/img/default.png";
+import Cookies from "js-cookie";
+import axios from "utils/axios";
+
+const imageStyle = {
+  width: "80px",
+  height: "80px",
+};
 
 const ProfileComponent = (props) => {
   const router = useRouter();
   const personalInfo = () => {
     router.push("/profile/personalinformation");
   };
+  const changePassword = () => {
+    router.push("/profile/changePassword");
+  };
   const user = props.user;
   const fullName = `${user.user.firstName} ${user.user.lastName}`;
   const userPhone = user.user.noTelp;
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    Cookies.remove("id");
+    Cookies.remove("token");
+    axios.post("/auth/logout");
+    router.push("/home/dashboard");
+
+    return;
+  };
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
       <div className="user-profile-header text-center mt-4">
         <div className="imageStyle mx-auto">
-          <Image
-            src={user.user.image ? DefaultPhoto : DefaultPhoto}
+          <img
+            className="photo-user-personalpage"
+            src={
+              user.user.image
+                ? `${process.env.URL_BACKEND_LOCAL}/uploads/${user.user.image}`
+                : DefaultPhoto
+            }
             alt="user-photo"
           />
         </div>
@@ -48,6 +75,7 @@ const ProfileComponent = (props) => {
           <Image src={ArrowLeft} alt="arrow-left" className="arrow-left" />
         </div>
         <div
+          onClick={changePassword}
           className="
                 profile-menu-list
                 personal-information
@@ -73,7 +101,10 @@ const ProfileComponent = (props) => {
           <span className="personal-information-text">Change PIN</span>
           <Image src={ArrowLeft} alt="arrow-left" className="arrow-left" />
         </div>
-        <div className="profile-menu-list personal-information p-3 my-2">
+        <div
+          className="profile-menu-list personal-information p-3 my-2"
+          onClick={handleLogout}
+        >
           <span className="personal-information-text">Logout</span>
         </div>
       </div>

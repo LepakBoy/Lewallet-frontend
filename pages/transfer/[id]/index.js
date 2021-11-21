@@ -12,13 +12,13 @@ import axios from "utils/axios";
 export default function TransferByIdUser() {
   const router = useRouter();
   const [dataReciever, setDataReciever] = useState([]);
-  // console.log(router.query.id, "id dari transge byid");
+  console.log(router.query.id, "id dari transge byid");
 
   useEffect(() => {
     axios
       .get(`/user/profile/${router.query.id}`)
       .then((res) => {
-        console.log(res.data.data, "res axios get");
+        // console.log(res.data.data, "res axios get");
         setDataReciever(res.data.data);
       })
       .catch((err) => {
@@ -26,7 +26,6 @@ export default function TransferByIdUser() {
       });
   }, []);
 
-  console.log(dataReciever, "dataReciever");
   return (
     <body>
       <Navbar />
@@ -35,7 +34,7 @@ export default function TransferByIdUser() {
           <Sidebar />
           {/* <TransferStatusComponent /> */}
           {/* <TransferComponent /> */}
-          <TransferByIdComponent id={router.query.id} />
+          <TransferByIdComponent id={router.query.id} data={dataReciever} />
           {/* <TransferSummary /> */}
         </div>
       </main>
@@ -43,17 +42,3 @@ export default function TransferByIdUser() {
     </body>
   );
 }
-
-// import { useRouter } from "next/router";
-
-// export default function TransferById() {
-//   const router = useRouter();
-//   console.log(router.query, "dari id tranger page");
-//   const id = router.query;
-//   return (
-//     <>
-//       <h1>aaa</h1>
-//       <h1>aaaaaaaaaa</h1>
-//     </>
-//   );
-// }

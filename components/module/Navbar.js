@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Image from "next/image";
 import Bell from "assets/logo/bell.png";
@@ -16,9 +17,13 @@ const Navbar = (props) => {
         <div className="navbar-logo">Lewallet</div>
         <div className="navbar-profile d-flex justify-content-between">
           <div className="navbar-photo-profile me-4">
-            <Image
+            <img
               className="user-photo-navbar"
-              src={user.user.image ? DefaultPhoto : DefaultPhoto}
+              src={
+                user.user.image
+                  ? `${process.env.URL_BACKEND_LOCAL}/uploads/${user.user.image}`
+                  : "../assets/img/default.png"
+              }
               alt="photo"
             />
           </div>

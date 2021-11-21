@@ -3,7 +3,11 @@
   background-color: white;
   border-radius: 22px;
 }
-
+.photo-user-personalpage {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
 .imageStyle {
   height: 80px;
   width: 80px;

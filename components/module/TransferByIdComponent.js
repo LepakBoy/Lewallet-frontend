@@ -5,13 +5,17 @@ import Pencil from "assets/logo/pencil.png";
 import { connect } from "react-redux";
 
 const TransferByIdComponent = (props) => {
+  const id = props.id;
+  // console.log(id, "apyaaaaaaaaaaaa");
   const user = props.user;
-  console.log(user);
+  const [dataReciever, setDataReciever] = useState([]);
+  // console.log(user);
+  console.log(props, "data revieceerer");
 
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
       <div className="transfer-header">
-        <div className="transfer-title">Transfer Money</div>
+        <div className="transfer-title">Tranfer Money</div>
       </div>
       <div className="detail-reciever-byid d-flex mt-4 ps-3">
         <Image
@@ -20,7 +24,7 @@ const TransferByIdComponent = (props) => {
           alt="history-img"
         />
         <div className="detail-reciever ms-3 pt-2">
-          <div className="transfer-detail-name">aa</div>
+          <div className="transfer-detail-name">{props.data.firstName}</div>
           <div className="transfer-detail-phone">1111</div>
         </div>
       </div>

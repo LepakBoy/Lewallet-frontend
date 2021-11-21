@@ -31,7 +31,6 @@ export default function HomeDashboard(props) {
   const [nav, setNav] = useState("");
 
   useEffect(() => {
-    // console.log(props.data.isLogin, "props");
     Promise.all([
       axios.get(`/dashboard/${props.data.id}`, {
         headers: {

@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
-const PersonalInformationComponent = (props) => {
-  const user = props.user;
-  const fullName = `${user.user.firstName} ${user.user.lastName}`;
-  const userPhone = user.user.noTelp;
+export default function PersonalInformationComponent(props) {
+  const dataUser = props.data;
+  const userPhone = dataUser.noTelp;
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
@@ -20,21 +18,21 @@ const PersonalInformationComponent = (props) => {
       <div className="personal-detail-information">
         <div className="card personal-card personal-first-name p-2 my-3">
           <span className="personal-list-title">First Name</span>
-          <span className="personal-list-value">{user.user.firstName}</span>
+          <span className="personal-list-value">{dataUser.firstName}</span>
         </div>
         <div className="card personal-card personal-first-name p-2 my-3">
           <span className="personal-list-title">Last Name</span>
-          <span className="personal-list-value">{user.user.lastName}</span>
+          <span className="personal-list-value">{dataUser.lastName}</span>
         </div>
         <div className="card personal-card personal-first-name p-2 my-3">
           <span className="personal-list-title">Email</span>
-          <span className="personal-list-value">{user.user.email}</span>
+          <span className="personal-list-value">{dataUser.email}</span>
         </div>
         <div className="card personal-card personal-first-name p-2 my-3 d-flex">
           <div className="phone-detail-list w-50">
             <span className="personal-list-title d-block">Phone Number</span>
             <span className="personal-list-value">
-              {user.user.noTelp ? userPhone : "no phone number"}
+              {dataUser.noTelp ? userPhone : "no phone number"}
             </span>
           </div>
           {/* <span class="manage-phone-option">Manage</span>  */}
@@ -42,10 +40,4 @@ const PersonalInformationComponent = (props) => {
       </div>
     </div>
   );
-};
-
-const mapStateToProps = (state) => ({
-  user: state.dataUser,
-});
-
-export default connect(mapStateToProps)(PersonalInformationComponent);
+}
