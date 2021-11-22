@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "components/module/Navbar";
 import Sidebar from "components/module/Sidebar";
-import TransferComponent from "components/module/TransferComponent";
 import TransferSummary from "components/module/TransferSummaryComponent";
 import TransferByIdComponent from "components/module/TransferByIdComponent";
 import TransferStatusComponent from "components/module/TransferStatusComponent";
@@ -27,6 +26,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function TransferByIdUser() {
+  const [validData, setvalidData] = useState(false);
   const router = useRouter();
   const [dataReciever, setDataReciever] = useState([]);
   console.log(router.query.id, "id dari transge byid");
@@ -50,9 +50,11 @@ export default function TransferByIdUser() {
         <div className="wrapper-main-home mx-auto d-flex">
           <Sidebar />
           {/* <TransferStatusComponent /> */}
-          {/* <TransferComponent /> */}
-          <TransferByIdComponent id={router.query.id} data={dataReciever} />
-          {/* <TransferSummary /> */}
+          {validData ? (
+            <TransferSummary />
+          ) : (
+            <TransferByIdComponent id={router.query.id} data={dataReciever} />
+          )}
         </div>
       </main>
       <Footer />

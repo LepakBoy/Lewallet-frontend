@@ -69,6 +69,10 @@
   font-size: 22px;
   font-weight: 700;
 }
+.nodata-text {
+  font-size: 18px;
+  font-weight: 700;
+}
 .transfer-input-notes {
   padding-left: 18px;
   height: 36px;

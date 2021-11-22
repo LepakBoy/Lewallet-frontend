@@ -71,7 +71,9 @@ export default function TransferComponent() {
           </form>
         </div>
         {nodata ? (
-          <h3>ga ada</h3>
+          <div className="nodata text-center mt-5 text-danger">
+            <span className="nodata-text">no data match</span>
+          </div>
         ) : (
           data.map((item) => (
             <div
@@ -84,7 +86,7 @@ export default function TransferComponent() {
                 src={
                   item.image
                     ? `${process.env.URL_BACKEND_LOCAL}/uploads/${item.image}`
-                    : "../assets/img/default.png"
+                    : "/img/default.png"
                 }
                 alt="history-img"
               />

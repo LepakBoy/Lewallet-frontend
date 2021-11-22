@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ImageUser from "assets/img/1.png";
@@ -5,12 +6,25 @@ import Pencil from "assets/logo/pencil.png";
 import { connect } from "react-redux";
 
 const TransferByIdComponent = (props) => {
+  const [validData, setValidData] = useState(false);
+  const [dataTransfer, setDataTransfer] = useState({
+    recieverId: "",
+    amount: 0,
+    notes: "",
+  });
   const id = props.id;
-  // console.log(id, "apyaaaaaaaaaaaa");
   const user = props.user;
-  // const [dataReciever, setDataReciever] = useState([]);
-  // console.log(user);
-  // console.log(props, "proops");
+  useEffect(() => {
+    setDataTransfer({ recieverId: props.id });
+  }, []);
+
+  console.log(dataTransfer);
+
+  const handleChangeText = (e) => {
+    setDataTransfer({ ...dataTransfer, [e.target.name]: e.target.value });
+  };
+
+  const continueButton = () => {};
 
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
@@ -18,14 +32,20 @@ const TransferByIdComponent = (props) => {
         <div className="transfer-title">Tranfer Money</div>
       </div>
       <div className="detail-reciever-byid d-flex mt-4 ps-3">
-        <Image
+        <img
           className="detail-reciever-image"
-          src={ImageUser}
+          src={
+            props.data.image
+              ? `${process.env.URL_BACKEND_LOCAL}/uploads/${props.data.image}`
+              : "/img/default.png"
+          }
           alt="history-img"
         />
         <div className="detail-reciever ms-3 pt-2">
           <div className="transfer-detail-name">
-            {props.data.firstName ? props.data.firstName : "reciever name"}
+            {props.data.firstName
+              ? `${props.data.firstName} ${props.data.lastName}`
+              : "reciever name"}
           </div>
           <div className="transfer-detail-phone">
             {props.data.noTelp ? props.data.noTelp : "no phone number"}
@@ -40,6 +60,8 @@ const TransferByIdComponent = (props) => {
       </div>
       <div className="transfer-detail-input w-75 mx-auto mt-5 text-center">
         <input
+          name="amount"
+          onChange={handleChangeText}
           type="number"
           className="input-amount-transfer mx-auto h-100 w-50 text-center"
           placeholder="0.00"
@@ -50,6 +72,8 @@ const TransferByIdComponent = (props) => {
         <div className="input-note-transfer mt-4 w-75 mx-auto">
           <Image src={Pencil} alt="pencil" />
           <input
+            name="notes"
+            onChange={handleChangeText}
             type="text"
             placeholder="Input some notes "
             className="transfer-input-notes w-75"

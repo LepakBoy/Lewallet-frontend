@@ -39,9 +39,7 @@ const ChangePasswordComponent = (props) => {
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
       <div className="personal-header">
-        <span className="personal-header-title d-block">
-          Personal Information
-        </span>
+        <span className="personal-header-title d-block">Change Password</span>
         <span className="personal-header-notes d-block w-50 mt-3 pt-2">
           You must enter your current password and then type your new password
           twice.
@@ -64,7 +62,7 @@ const ChangePasswordComponent = (props) => {
             p-2
           "
           >
-            <img src="./assets/logo/lock.png" className="lock-logo" alt="" />
+            <img src="/logo/lock.png" className="lock-logo" alt="" />
             <input
               onChange={handleChangeText}
               type="password"
@@ -83,7 +81,7 @@ const ChangePasswordComponent = (props) => {
             p-2
           "
           >
-            <img src="./assets/logo/lock.png" className="lock-logo" alt="" />
+            <img src="/logo/lock.png" className="lock-logo" alt="" />
             <input
               onChange={handleChangeText}
               type="password"
@@ -102,7 +100,7 @@ const ChangePasswordComponent = (props) => {
             p-2
           "
           >
-            <img src="../assets/logo/lock.png" className="lock-logo" alt="" />
+            <img src="/logo/lock.png" className="lock-logo" alt="" />
             <input
               onChange={handleChangeText}
               type="password"

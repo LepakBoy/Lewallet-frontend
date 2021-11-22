@@ -1,19 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Image from "next/image";
-import ImageNavbar from "assets/img/navbar-poto.png";
 import ArrowLeft from "assets/logo/arrow-left.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import DefaultPhoto from "assets/img/default.png";
 import Cookies from "js-cookie";
 import axios from "utils/axios";
-
-const imageStyle = {
-  width: "80px",
-  height: "80px",
-};
 
 const ProfileComponent = (props) => {
   const router = useRouter();
@@ -47,7 +40,7 @@ const ProfileComponent = (props) => {
             src={
               user.user.image
                 ? `${process.env.URL_BACKEND_LOCAL}/uploads/${user.user.image}`
-                : DefaultPhoto
+                : "/img/default.png"
             }
             alt="user-photo"
           />

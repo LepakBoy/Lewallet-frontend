@@ -2,15 +2,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Bell from "assets/logo/bell.png";
-import NavbarPhoto from "assets/img/navbar-poto.png";
 import { connect } from "react-redux";
-import DefaultPhoto from "assets/img/default.png";
 
 const Navbar = (props) => {
   const user = props.user;
-  // console.log(user.user.data.firstName, "dari navbar");
   const fullName = `${user.user.firstName} ${user.user.lastName}`;
   const userPhone = user.user.noTelp;
+
   return (
     <nav className="navbar">
       <div className="wrapper-navbar d-flex justify-content-between">
@@ -22,7 +20,7 @@ const Navbar = (props) => {
               src={
                 user.user.image
                   ? `${process.env.URL_BACKEND_LOCAL}/uploads/${user.user.image}`
-                  : "../assets/img/default.png"
+                  : "/img/default.png"
               }
               alt="photo"
             />

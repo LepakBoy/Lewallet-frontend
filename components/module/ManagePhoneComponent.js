@@ -24,7 +24,8 @@ const ManagePhoneComponent = (props) => {
     axios
       .patch(`/user/profile/${id}`, { noTelp: phoneNumber })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.msg);
+        alert(res.data.msg);
         props.getUserById(id);
       })
       .catch((err) => {
@@ -38,7 +39,7 @@ const ManagePhoneComponent = (props) => {
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
       <div className="personal-header">
         <span className="personal-header-title d-block">
-          Personal Information
+          Manage Phone Number
         </span>
         <span className="personal-header-notes d-block w-50 mt-3 pt-2">
           Add at least one phone number for the transfer ID so you can start

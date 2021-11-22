@@ -52,11 +52,13 @@ main {
 }
 span a {
   text-decoration: none;
+  color: #3a3d42;
 }
 .side-bar-selected {
   color: #6379f4;
 }
 .side-bar-list {
+  color: #3a3d42;
   font-size: 16px;
   font-weight: 700;
 }

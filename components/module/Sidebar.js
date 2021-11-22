@@ -29,7 +29,7 @@ export default function Sidebar(props) {
       <div className="wrapper-side-bar p-4">
         <div className="side-bar-menu pt-2 d-flex align-items-center">
           <Image src={Dashboard} alt="" />
-          <span className="side-bar-list side-bar-selected ps-4">
+          <span className="side-bar-list  ps-4">
             <Link href="/home/dashboard">Dashboard</Link>
           </span>
         </div>
