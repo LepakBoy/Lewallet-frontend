@@ -64,6 +64,11 @@
   font-size: 20px;
   font-weight: 700;
 }
-.manage-phone-option:hover {
-  cursor: pointer;
+.manage-phone-option {
+  background-color: #fafcff;
+  color: #6379f4;
+  padding: 6px 12px;
+  border: 1px solid rgb(134, 134, 134);
+  border-radius: 8px;
+  font-weight: 600;
 }

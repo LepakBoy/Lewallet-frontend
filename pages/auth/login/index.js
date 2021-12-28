@@ -10,6 +10,7 @@ import { getUserById } from "stores/action/dataUser";
 import { authLogin } from "stores/action/auth";
 import { connect } from "react-redux";
 import { getDataCookie } from "middleware/authorizationPage";
+import { Modal, Button } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -28,17 +29,22 @@ export async function getServerSideProps(context) {
 }
 
 const Login = (props) => {
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
   const auth = props.auth;
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
   const [invalidAuth, setInvalidAuth] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleClose = () => {
+    setShow(false);
+  };
 
+  const handleSubmit = () => {
     props
       .authLogin(form)
       .then((res) => {
+        console.log(res, "res l;ogin");
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
         props.getUserById(res.value.data.data.id);
@@ -49,7 +55,11 @@ const Login = (props) => {
         }
       })
       .catch((err) => {
-        setInvalidAuth(err.response.data.msg);
+        console.log(err.response.data.msg, "errrooooooooooooo l;ogin");
+        setError(err.response.data.msg);
+        setShow(true);
+        // setInvalidAuth(err.response.msg);
+        console.log(err);
         return;
       });
   };
@@ -59,9 +69,27 @@ const Login = (props) => {
   };
 
   const user = props.user;
-  // console.log(user.user.data, "data user dari store di halaman login");
+  console.log(user.user.data, "data user dari store di halaman login");
   return (
     <body className="body-login d-flex">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>
+            {error.split(" ")[0] === "Success" ? "Success.." : "Oopss.."}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{error}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <Jumbotron />
       <div className="form-login d-flex justify-content-center">
         <div className="wrapper-login mt-4">
@@ -74,53 +102,49 @@ const Login = (props) => {
             wherever you are. Desktop, laptop, mobile phone? we cover all of
             that for you!
           </div>
-          <form
-            action=""
-            className="form-login w-100 pt-3 mt-4"
-            onSubmit={handleSubmit}
+
+          <div className="input-form-login d-flex align-items-center mt-4">
+            <Image src={Email} alt="" className="email-logo" />
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your e-mail"
+              className="input-email input-login w-100 border-0 ps-4"
+              onChange={handleChageText}
+            />
+          </div>
+          <div className="input-form-login d-flex align-items-center mt-5">
+            <Image src={Lock} alt="" className="email-logo" />
+            <input
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              className="input-password input-login w-100 border-0 ps-4"
+              onChange={handleChageText}
+            />
+          </div>
+          <div className="forgot-password text-end pt-3">
+            <span className="forgot-password-login">Forgot Password?</span>
+          </div>
+          {invalidAuth ? (
+            <div className="invalid-auth text-center ">
+              <span>{invalidAuth}</span>
+            </div>
+          ) : null}
+          <button
+            onClick={handleSubmit}
+            name="login"
+            type="submit"
+            className="w-100 mt-5 btn-login btn-auth"
           >
-            <div className="input-form-login d-flex align-items-center">
-              <Image src={Email} alt="" className="email-logo" />
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter your e-mail"
-                className="input-email input-login w-100 border-0 ps-4"
-                onChange={handleChageText}
-              />
-            </div>
-            <div className="input-form-login d-flex align-items-center mt-5">
-              <Image src={Lock} alt="" className="email-logo" />
-              <input
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-                className="input-password input-login w-100 border-0 ps-4"
-                onChange={handleChageText}
-              />
-            </div>
-            <div className="forgot-password text-end pt-3">
-              <span className="forgot-password-login">Forgot Password?</span>
-            </div>
-            {invalidAuth ? (
-              <div className="invalid-auth text-center ">
-                <span>{invalidAuth}</span>
-              </div>
-            ) : null}
-            <button
-              name="login"
-              type="submit"
-              className="w-100 mt-5 btn-login btn-auth"
-            >
-              Login
-            </button>
-            <div className="register-login-page text-center mt-3">
-              Don’t have an account?
-              <span className="register-login">
-                <Link href="/auth/register">Let’s Sign Up</Link>
-              </span>
-            </div>
-          </form>
+            Login
+          </button>
+          <div className="register-login-page text-center mt-3">
+            Don’t have an account?
+            <span className="register-login">
+              <Link href="/auth/register">Let’s Sign Up</Link>
+            </span>
+          </div>
         </div>
       </div>
     </body>

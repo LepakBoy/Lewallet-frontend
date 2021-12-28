@@ -5,11 +5,21 @@ import axios from "utils/axios";
 import Image from "next/image";
 import PhoneLogo from "assets/logo/phone.png";
 import { getUserById } from "stores/action/dataUser";
+import { Modal, Button } from "react-bootstrap";
 
 const ManagePhoneComponent = (props) => {
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const userPhone = props.user.user.noTelp;
   const id = props.user.user.id;
+
+  console.log(phoneNumber, "notelp");
+  console.log(userPhone, "props");
+
+  const handleClose = () => {
+    setShow(false);
+  };
 
   useEffect(() => {
     setPhoneNumber(userPhone);
@@ -21,11 +31,18 @@ const ManagePhoneComponent = (props) => {
 
   const submitPhone = (e) => {
     e.preventDefault();
+    if (phoneNumber === userPhone) {
+      setError("Please insert new phone before update phone number");
+      setShow(true);
+      return;
+    }
+
     axios
       .patch(`/user/profile/${id}`, { noTelp: phoneNumber })
       .then((res) => {
         console.log(res.data.msg);
-        alert(res.data.msg);
+        setError(res.data.msg);
+        setShow(true);
         props.getUserById(id);
       })
       .catch((err) => {
@@ -37,6 +54,24 @@ const ManagePhoneComponent = (props) => {
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>
+            {error.split(" ")[0] === "Success" ? "Success.." : "Oopss.."}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{error}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="personal-header">
         <span className="personal-header-title d-block">
           Manage Phone Number
@@ -78,7 +113,7 @@ const ManagePhoneComponent = (props) => {
             className="button-change-pass w-50 mt-2 border-0 p-2"
             type="submit"
           >
-            Add Phone Number
+            {`${phoneNumber ? "Update Phone Number" : "Add Phone Number"}`}
           </button>
         </form>
       </div>

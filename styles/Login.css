@@ -53,6 +53,7 @@
   width: 60%;
 }
 .form-login {
+  overflow-y: auto;
   width: 45%;
 }
 .header-login {
@@ -123,5 +124,18 @@
     position: absolute;
     /* width: 400px; */
     height: 50%;
+  }
+}
+@media (max-width: 992px) {
+  .header-login {
+    font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .jumbotron-login {
+    display: none;
+  }
+  .form-login {
+    width: 100%;
   }
 }

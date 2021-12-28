@@ -35,15 +35,15 @@ export default function PersonalInformationComponent(props) {
           <span className="personal-list-value">{dataUser.email}</span>
         </div>
         <div className="card personal-card personal-first-name p-2 my-3 d-flex ">
-          <div className="phone-detail-list w-50">
-            <span className="personal-list-title d-block">Phone Number</span>
-            <span className="personal-list-value">
+          <span className="personal-list-title d-block">Phone Number</span>
+          <div className="phone-detail-list w-100 d-flex">
+            <span className="personal-list-value w-100">
               {dataUser.noTelp ? userPhone : "no phone number"}
             </span>
+            <button className="manage-phone-option" onClick={toManagePhone}>
+              Manage
+            </button>
           </div>
-          <span className="manage-phone-option w-50" onClick={toManagePhone}>
-            Manage
-          </span>
         </div>
       </div>
     </div>
