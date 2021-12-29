@@ -162,9 +162,14 @@ span a {
   color: #7a7886;
 }
 .list-history-amount {
-  color: #1ec15f;
   font-weight: 700;
   font-size: 16px;
+}
+#green {
+  color: #1ec15f;
+}
+#red {
+  color: #ff5b37;
 }
 footer {
   background-color: #6379f4;

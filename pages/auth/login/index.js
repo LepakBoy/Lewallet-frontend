@@ -29,6 +29,7 @@ export async function getServerSideProps(context) {
 }
 
 const Login = (props) => {
+  const user = props.user;
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const auth = props.auth;
@@ -44,7 +45,6 @@ const Login = (props) => {
     props
       .authLogin(form)
       .then((res) => {
-        console.log(res, "res l;ogin");
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
         props.getUserById(res.value.data.data.id);
@@ -55,7 +55,6 @@ const Login = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data.msg, "errrooooooooooooo l;ogin");
         setError(err.response.data.msg);
         setShow(true);
         // setInvalidAuth(err.response.msg);
@@ -68,10 +67,8 @@ const Login = (props) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const user = props.user;
-  console.log(user.user.data, "data user dari store di halaman login");
   return (
-    <body className="body-login d-flex">
+    <div className="body-login d-flex">
       <Modal
         show={show}
         onHide={handleClose}
@@ -147,7 +144,7 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 

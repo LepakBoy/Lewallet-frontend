@@ -19,7 +19,11 @@ const DashboardComponent = (props) => {
     router.push("/transfer");
   };
 
-  useEffect(() => {}, []);
+  console.log(history.data, "history datya");
+
+  useEffect(() => {
+    console.log(history);
+  }, []);
 
   return (
     <div className="dashboar-content w-100 ms-3">
@@ -96,59 +100,30 @@ const DashboardComponent = (props) => {
               <div className="list-history-name">No History Data</div>
             </div>
           ) : (
-            history.data.map((item) => {
-              <div className="list-detail-history d-flex mt-4">
-                <Image
+            history.data.map((item) => (
+              <div className="list-detail-history d-flex mt-2" key={item.index}>
+                <img
                   className="list-history-img"
-                  src={ImageUser}
+                  src={
+                    item.image
+                      ? `${process.env.URL_BACKEND_LOCAL}/uploads/${item.image}`
+                      : "/img/default.png"
+                  }
                   alt="history-img"
                 />
                 <div className="detail-histroy-name ms-3 w-50">
-                  <div className="list-history-name">Samuel Suhi</div>
-                  <div className="list-history-status">Accept</div>
+                  <div className="list-history-name">{`${item.firstName} ${item.lastName}`}</div>
+                  <div className="list-history-status">{item.type}</div>
                 </div>
-                <div className="list-history-amount w-50 text-end">
-                  +Rp.60.000
+                <div
+                  className="list-history-amount w-50 text-end"
+                  id={`${item.type === "send" ? "red" : "green"}`}
+                >
+                  {`${item.type === "send" ? "-" : "+"}Rp. ${item.amount}`}
                 </div>
-              </div>;
-            })
+              </div>
+            ))
           )}
-          {/* <div className="list-detail-history d-flex mt-4">
-            <Image
-              className="list-history-img"
-              src={ImageUser}
-              alt="history-img"
-            />
-            <div className="detail-histroy-name ms-3 w-50">
-              <div className="list-history-name">Samuel Suhi</div>
-              <div className="list-history-status">Accept</div>
-            </div>
-            <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div> */}
-          {/* <div className="list-detail-history d-flex mt-4">
-            <Image
-              className="list-history-img"
-              src={ImageUser}
-              alt="history-img"
-            />
-            <div className="detail-histroy-name ms-3 w-50">
-              <div className="list-history-name">Samuel Suhi</div>
-              <div className="list-history-status">Accept</div>
-            </div>
-            <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div> */}
-          {/* <div className="list-detail-history d-flex mt-4">
-            <Image
-              className="list-history-img"
-              src={ImageUser}
-              alt="history-img"
-            />
-            <div className="detail-histroy-name ms-3 w-50">
-              <div className="list-history-name">Samuel Suhi</div>
-              <div className="list-history-status">Accept</div>
-            </div>
-            <div className="list-history-amount w-50 text-end">+Rp.60.000</div>
-          </div> */}
         </div>
       </div>
     </div>

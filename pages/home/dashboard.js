@@ -11,7 +11,6 @@ import { getUserById } from "stores/action/dataUser";
 export async function getServerSideProps(context) {
   console.log("ssr is running");
   const dataCookie = await getDataCookie(context);
-  console.log(dataCookie.id, "datacokieeeeeeeee");
 
   if (!dataCookie.isLogin) {
     return {
@@ -32,6 +31,8 @@ export default function HomeDashboard(props) {
   const [history, setHistory] = useState({ data: "", pagination: "" });
   const [nav, setNav] = useState("");
 
+  console.log(history, "history");
+
   useEffect(() => {
     Promise.all([
       axios.get(`/dashboard/${props.data.id}`, {
@@ -39,7 +40,7 @@ export default function HomeDashboard(props) {
           Authorization: `Bearer ${props.data.token}`,
         },
       }),
-      axios.get(`/transaction/history?page=2&limit=2&filter=MONTH`, {
+      axios.get(`/transaction/history?page=1&limit=5&filter=MONTH`, {
         headers: {
           Authorization: `Bearer ${props.data.token}`,
         },
