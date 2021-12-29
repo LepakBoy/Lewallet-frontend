@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ImageUser from "assets/img/1.png";
+import { useSelector } from "react-redux";
 import SuccessLogo from "assets/logo/success.png";
 import FailedLogo from "assets/logo/failed.png";
 import DownloadLogo from "assets/logo/download.png";
 
-export default function TransferStatusComponent() {
+export default function TransferStatusComponent(props) {
+  const user = useSelector((state) => state.dataUser.user);
+
+  useEffect(() => {}, []);
+
+  const { detail } = props;
+
   return (
     <div className="transfer-status-content w-100 ms-3 ms-2 p-4">
       <div className="detail-transfer-confirmation">
         <div className="status-transfer-summary text-center py-3">
-          <Image src={FailedLogo} alt="status-logo" className="status-logo" />
+          <Image
+            src={detail.status === "200" ? SuccessLogo : FailedLogo}
+            alt="status-logo"
+            className="status-logo"
+          />
           <span className="transfer-status-alert d-block mt-3">
-            Transfer Failed
+            {detail.status === "200" ? "Transfer Success" : "Transfer Failed"}
           </span>
           <span className="status-notes d-block mt-3 w-75 mx-auto px-5">
-            We can’t transfer your money at the moment, we recommend you to
+            We cannot transfer your money at the moment, we recommend you to
             check your internet connection and try again.
           </span>
         </div>
@@ -25,7 +35,7 @@ export default function TransferStatusComponent() {
             <span className="title-card-list">Amount</span>
           </div>
           <div className="title-card">
-            <span className="title-card-content">Rp.100.000</span>
+            <span className="title-card-content">{`Rp. ${detail.amount}`}</span>
           </div>
         </div>
         <div className="card card-confirmation border-0 mt-3 p-2">
@@ -33,7 +43,9 @@ export default function TransferStatusComponent() {
             <span className="title-card-list">Balance Left</span>
           </div>
           <div className="title-card">
-            <span className="title-card-content">Rp. 20.000</span>
+            <span className="title-card-content">{`Rp. ${
+              user.balance - detail.amount
+            }`}</span>
           </div>
         </div>
         <div className="card card-confirmation border-0 mt-3 p-2">
@@ -41,7 +53,7 @@ export default function TransferStatusComponent() {
             <span className="title-card-list">Date & Time</span>
           </div>
           <div className="title-card">
-            <span className="title-card-content">May 11, 2020 - 12.20</span>
+            <span className="title-card-content">{detail.date}</span>
           </div>
         </div>
         <div className="card card-confirmation border-0 mt-3 p-2">
@@ -49,21 +61,25 @@ export default function TransferStatusComponent() {
             <span className="title-card-list">Notes</span>
           </div>
           <div className="title-card">
-            <span className="title-card-content">for buying some stock</span>
+            <span className="title-card-content">{detail.notes}</span>
           </div>
         </div>
         <div className="transfer-header mt-4 pt-4">
           <div className="transfer-title">Transfer To</div>
         </div>
         <div className="detail-reciever-byid d-flex mt-2 ps-3">
-          <Image
-            className="confirmation-reciever-image"
-            src={ImageUser}
+          <img
+            className="detail-reciever-image"
+            src={
+              detail.image
+                ? `${process.env.URL_BACKEND_LOCAL}/uploads/${detail.image}`
+                : "/img/default.png"
+            }
             alt="history-img"
           />
           <div className="detail-reciever ms-3 pt-2">
-            <div className="transfer-detail-name">Samuel Suhi</div>
-            <div className="transfer-detail-phone">+62 813-8492-9994</div>
+            <div className="transfer-detail-name">{`${detail.firstName} ${detail.lastName}`}</div>
+            <div className="transfer-detail-phone">{detail.noTelp}</div>
           </div>
         </div>
         <div className="button-continue mt-4 text-end">

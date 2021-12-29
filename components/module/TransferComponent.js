@@ -20,7 +20,7 @@ export default function TransferComponent() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // console.log(search, "state seaacrth");
+
     if (search === null) {
       return [];
     }
@@ -45,7 +45,7 @@ export default function TransferComponent() {
     });
   };
 
-  console.log(data, "hasil");
+  // console.log(data, "hasil");
   // console.log(search, "state seaacrth");
   return (
     <div className="transfer-content w-100 ms-3">
@@ -72,7 +72,7 @@ export default function TransferComponent() {
         </div>
         {nodata ? (
           <div className="nodata text-center mt-5 text-danger">
-            <span className="nodata-text">no data match</span>
+            <span className="nodata-text">User not found</span>
           </div>
         ) : (
           data.map((item) => (

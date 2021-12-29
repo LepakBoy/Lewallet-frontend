@@ -1,33 +1,81 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import ImageUser from "assets/img/1.png";
 import Pencil from "assets/logo/pencil.png";
+import router, { useRouter } from "next/router";
 import { connect } from "react-redux";
+import { Modal, Button } from "react-bootstrap";
 
 const TransferByIdComponent = (props) => {
-  const [validData, setValidData] = useState(false);
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
   const [dataTransfer, setDataTransfer] = useState({
-    recieverId: "",
+    receiverId: "",
     amount: 0,
     notes: "",
   });
-  const id = props.id;
+
   const user = props.user;
+
   useEffect(() => {
-    setDataTransfer({ recieverId: props.id });
+    setDataTransfer({ receiverId: props.id });
   }, []);
 
-  console.log(dataTransfer);
+  const handleClose = () => {
+    setShow(false);
+  };
 
   const handleChangeText = (e) => {
     setDataTransfer({ ...dataTransfer, [e.target.name]: e.target.value });
   };
 
-  const continueButton = () => {};
+  const continueButton = () => {
+    if (
+      dataTransfer.amount < 10000 ||
+      parseInt(dataTransfer.amount) >= user.user.balance ||
+      !dataTransfer.amount
+    ) {
+      setError(
+        "Tranfer balance must be more than Rp. 10.000 or less then your balance"
+      );
+      setShow(true);
+      return;
+    }
+
+    if (!dataTransfer.notes || dataTransfer.notes === "") {
+      setError("Notes must be filled");
+      setShow(true);
+      return;
+    }
+
+    router.push({
+      pathname: "/transfer/summary",
+      query: dataTransfer,
+    });
+  };
+
+  console.log(dataTransfer);
 
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>
+            {error.split(" ")[0] === "Success" ? "Success.." : "Oopss.."}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{error}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="transfer-header">
         <div className="transfer-title">Tranfer Money</div>
       </div>
@@ -80,7 +128,10 @@ const TransferByIdComponent = (props) => {
           />
         </div>
         <div className="button-continue mt-5 text-end">
-          <button className="button-continue-transfer px-4 py-2 border-0">
+          <button
+            onClick={continueButton}
+            className="button-continue-transfer px-4 py-2 border-0"
+          >
             Continue
           </button>
         </div>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import ArrowUpRed from "assets/logo/arrow-up-red.png";
 import ArrowUp from "assets/logo/arrow-up.png";
@@ -8,10 +9,17 @@ import ImageUser from "assets/img/1.png";
 import { connect } from "react-redux";
 
 const DashboardComponent = (props) => {
+  const router = useRouter();
   const user = props.user;
   const auth = props.auth;
   const { dashboard, history } = props;
   const userPhone = user.user.noTelp;
+
+  const toTransfer = () => {
+    router.push("/transfer");
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="dashboar-content w-100 ms-3">
@@ -33,7 +41,10 @@ const DashboardComponent = (props) => {
           </div>
         </div>
         <div className="dashboard-user-option">
-          <button className="btn-balance-option d-block w-100">
+          <button
+            onClick={toTransfer}
+            className="btn-balance-option d-block w-100"
+          >
             <Image src={ArrowUp} alt="" /> Transfer
           </button>
           <button className="btn-balance-option d-block w-100">

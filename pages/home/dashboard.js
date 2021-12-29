@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Navbar from "components/module/Navbar";
 import Sidebar from "components/module/Sidebar";
 import DashboardComponent from "components/module/DashboardComponent";
 import Footer from "components/module/Footer";
 import { getDataCookie } from "middleware/authorizationPage";
 import axios from "utils/axios";
+import { getUserById } from "stores/action/dataUser";
 
 export async function getServerSideProps(context) {
   console.log("ssr is running");
