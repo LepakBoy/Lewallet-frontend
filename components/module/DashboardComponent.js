@@ -5,8 +5,8 @@ import ArrowUpRed from "assets/logo/arrow-up-red.png";
 import ArrowUp from "assets/logo/arrow-up.png";
 import Plus from "assets/logo/plus.png";
 import ArrowDnGreen from "assets/logo/arrow-dn-green.png";
-import ImageUser from "assets/img/1.png";
 import { connect } from "react-redux";
+import Link from "next/link";
 
 const DashboardComponent = (props) => {
   const router = useRouter();
@@ -18,12 +18,6 @@ const DashboardComponent = (props) => {
   const toTransfer = () => {
     router.push("/transfer");
   };
-
-  console.log(history.data, "history datya");
-
-  useEffect(() => {
-    console.log(history);
-  }, []);
 
   return (
     <div className="dashboar-content w-100 ms-3">
@@ -92,7 +86,10 @@ const DashboardComponent = (props) => {
         <div className="dashboard-user-history w-50 ms-2 p-4">
           <div className="history-header d-flex justify-content-between">
             <div className="history-title">Transaction History</div>
-            <div className="see-all">See all</div>
+            {/* <div className="see-all">See all</div> */}
+            <Link className="see-all" href="/home/history">
+              See all
+            </Link>
           </div>
           {/* mapping from here */}
           {history.data.length < 1 ? (
@@ -116,7 +113,7 @@ const DashboardComponent = (props) => {
                   <div className="list-history-status">{item.type}</div>
                 </div>
                 <div
-                  className="list-history-amount w-50 text-end"
+                  className="list-history-amount p-2 w-50 text-end"
                   id={`${item.type === "send" ? "red" : "green"}`}
                 >
                   {`${item.type === "send" ? "-" : "+"}Rp. ${item.amount}`}

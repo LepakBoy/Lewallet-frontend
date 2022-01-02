@@ -43,9 +43,7 @@ export default function TransferStatusComponent(props) {
             <span className="title-card-list">Balance Left</span>
           </div>
           <div className="title-card">
-            <span className="title-card-content">{`Rp. ${
-              user.balance - detail.amount
-            }`}</span>
+            <span className="title-card-content">{`Rp. ${user.balance}`}</span>
           </div>
         </div>
         <div className="card card-confirmation border-0 mt-3 p-2">

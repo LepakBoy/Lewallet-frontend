@@ -26,12 +26,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function HomeDashboard(props) {
-  // console.log(props.data, "dashboard page");
   const [dashboard, setDashboard] = useState({});
   const [history, setHistory] = useState({ data: "", pagination: "" });
   const [nav, setNav] = useState("");
-
-  console.log(history, "history");
 
   useEffect(() => {
     Promise.all([
