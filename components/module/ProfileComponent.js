@@ -37,9 +37,9 @@ const ProfileComponent = (props) => {
     return;
   };
 
-  // useEffect(() => {
-  //   updateImage();
-  // }, [userImage]);
+  useEffect(() => {
+    updateImage();
+  }, [userImage]);
 
   const uploadImage = (e) => {
     setUserImage({ ...userImage, image: e.target.files[0] });

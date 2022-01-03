@@ -3,7 +3,6 @@ import Navbar from "components/module/Navbar";
 import Sidebar from "components/module/Sidebar";
 import TransferSummary from "components/module/TransferSummaryComponent";
 import TransferByIdComponent from "components/module/TransferByIdComponent";
-import TransferStatusComponent from "components/module/TransferStatusComponent";
 import Footer from "components/module/Footer";
 import { useRouter } from "next/router";
 import axios from "utils/axios";
