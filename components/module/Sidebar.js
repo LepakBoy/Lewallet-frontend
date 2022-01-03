@@ -24,19 +24,13 @@ export default function Sidebar(props) {
   const [error, seterror] = useState("");
 
   const handleLogout = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    Cookies.remove("id");
-    Cookies.remove("token");
-    axios.post("/auth/logout");
-    router.push("/home/dashboard");
-
-    return;
+    axios.post("/auth/logout").then((res) => {
+      Cookies.remove("id");
+      Cookies.remove("token");
+      router.push("/home/dashboard");
+      // window.location.href = "/home/dashboard";
+    });
   };
-
-  useEffect(() => {
-    dispatch(getUserById(user.id));
-  }, []);
 
   const handleClose = () => setShow(false);
 

@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+}
+.jumbotron {
+  height: 85vh;
+  background-color: #6379f4;
+  background-image: url("../assets/img/MaskGroup.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.btn-login {
+  background-color: #6379f4;
+  border: 1px solid white;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-regis {
+  background-color: white;
+  border: 1px solid white;
+  color: #6379f4;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.jumbo-content,
+.container {
+  height: 100%;
+}
+.title-page {
+  color: white;
+  font-size: 26px;
+  font-weight: 600;
+}
+.jumbo-slogan {
+  text-align: center;
+  width: 30%;
+  color: white;
+  font-size: 42px;
+  font-weight: 600;
+}
+.facilities {
+  background-color: #f5f5f5;
+}
+.why {
+  font-weight: 700;
+}
+.blue-color {
+  color: #6379f4;
+}
+.sub-why span {
+  font-size: 16px;
+}
+.support-title {
+  font-weight: 600;
+}
+.logo-support {
+  border-radius: 50%;
+  background-color: rgba(145, 145, 146, 0.397);
+  width: 60px;
+  height: 60px;
+}
+footer {
+  background-color: #6379f4;
+}
+.text-footer {
+  color: #efefef;
+}
+.img-support {
+  width: 25px;
+  height: 25px;
+}

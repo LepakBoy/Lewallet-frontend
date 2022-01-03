@@ -1,7 +1,7 @@
 import Head from "next/head";
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
-// import "../styles/paginate.scss";
+import "../styles/LandingPage.css";
 import "../styles/Login.css";
 import "../styles/HomeTemplate.css";
 import "../styles/Transfer.css";

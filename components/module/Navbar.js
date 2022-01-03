@@ -2,14 +2,15 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Bell from "assets/logo/bell.png";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 const Navbar = (props) => {
+  // const dataUser = useSelector((state) => state.dataUser);
   const user = props.user;
   const fullName = `${user.user.firstName} ${user.user.lastName}`;
   const userPhone = user.user.noTelp;
 
-  console.log(user.user);
+  // console.log(dataUser.user.id, "nmavbart");
 
   return (
     <nav className="navbar">

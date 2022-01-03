@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ArrowUpRed from "assets/logo/arrow-up-red.png";
@@ -7,30 +7,17 @@ import Plus from "assets/logo/plus.png";
 import ArrowDnGreen from "assets/logo/arrow-dn-green.png";
 import { connect } from "react-redux";
 import Link from "next/link";
-import axios from "../../utils/axios";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
 const DashboardComponent = (props) => {
   const router = useRouter();
   const user = props.user;
-  const auth = props.auth;
   const { dashboard, history } = props;
   const userPhone = user.user.noTelp;
-  const [resChart, setResChart] = useState([]);
-
-  const getChart = () => {
-    axios.get(`dashboard/${user.user.id}`).then((res) => {
-      setResChart(res.data.data);
-    });
-  };
-
-  useEffect(() => {
-    getChart();
-  }, []);
 
   const lableChart = [];
-  resChart.listIncome?.map((item) => {
+  dashboard.listIncome?.map((item) => {
     lableChart.push(item.day);
   });
 
@@ -39,17 +26,14 @@ const DashboardComponent = (props) => {
   };
 
   const dataIncome = [];
-  resChart.listIncome?.map((item) => {
+  dashboard.listIncome?.map((item) => {
     dataIncome.push(item.total);
   });
 
   const dataExpense = [];
-  resChart.listExpense?.map((item) => {
+  dashboard.listExpense?.map((item) => {
     dataExpense.push(item.total);
   });
-
-  console.log(dataExpense);
-  console.log(dataIncome);
 
   return (
     <div className="dashboar-content w-100 ms-3">
@@ -119,12 +103,14 @@ const DashboardComponent = (props) => {
                 labels: lableChart,
                 datasets: [
                   {
+                    label: "income",
                     data: dataIncome,
                     backgroundColor: ["rgba(255, 99, 132, 0.6)"],
                     borderColor: ["rgba(255, 99, 132, 1)"],
                     borderWidth: 2,
                   },
                   {
+                    label: "expense",
                     data: dataExpense,
                     backgroundColor: ["rgba(153, 102, 255, 0.6)"],
                     borderColor: ["rgba(153, 102, 255, 1)"],
@@ -135,6 +121,12 @@ const DashboardComponent = (props) => {
               height={400}
               width={790}
               options={{
+                legend: {
+                  position: "top",
+                },
+                title: {
+                  display: true,
+                },
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
