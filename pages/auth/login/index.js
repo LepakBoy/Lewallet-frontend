@@ -45,7 +45,6 @@ const Login = (props) => {
     props
       .authLogin(form)
       .then((res) => {
-        console.log(res.value, "reslogin");
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
         props.getUserById(res.value.data.data.id);

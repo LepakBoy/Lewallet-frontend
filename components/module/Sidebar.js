@@ -49,7 +49,6 @@ export default function Sidebar(props) {
       axios
         .post(`/transaction/top-up`, { amount: nominal.amount })
         .then((res) => {
-          console.log(res);
           window.open(
             res.data.data.redirectUrl,
             "_blank",
@@ -114,7 +113,7 @@ export default function Sidebar(props) {
             Top Up
           </span>
         </div>
-        <div className="side-ba-menu pt-5 d-flex align-items-center">
+        <div className="side-bar-menu pt-5 d-flex align-items-center">
           <Image src={UserLogo} alt="" />
           <span className="side-bar-list ps-4">
             <Link href="/profile">Profile</Link>

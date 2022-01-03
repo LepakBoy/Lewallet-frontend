@@ -36,7 +36,7 @@ const DashboardComponent = (props) => {
   });
 
   return (
-    <div className="dashboar-content w-100 ms-3">
+    <div className="dashboar-content w-100">
       <div
         className="
               dashboard-user-information
@@ -67,7 +67,7 @@ const DashboardComponent = (props) => {
         </div>
       </div>
       <div className="dashboard-history d-flex mt-3">
-        <div className="dashboard-user-chart w-50 me-2 p-4">
+        <div className="dashboard-user-chart  me-2 p-4">
           <div className="chart-header d-flex justify-content-between">
             <div className="chart-income">
               <Image
@@ -182,7 +182,7 @@ const DashboardComponent = (props) => {
             />
           </div>
         </div>
-        <div className="dashboard-user-history w-50 ms-2 p-4">
+        <div className="dashboard-user-history ms-2 p-4">
           <div className="history-header d-flex justify-content-between">
             <div className="history-title">Transaction History</div>
             {/* <div className="see-all">See all</div> */}

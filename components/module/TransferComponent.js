@@ -12,8 +12,6 @@ export default function TransferComponent() {
   const [nodata, setNodata] = useState(false);
   const [data, setData] = useState([]);
 
-  console.log(data, "dataaaaaa");
-
   const handleChangeText = (e) => {
     setSearch(e.target.value);
   };
@@ -27,7 +25,6 @@ export default function TransferComponent() {
     axios
       .get(`/user?page=1&limit=6&search=${search}&sort=firstName ASC`)
       .then((res) => {
-        console.log(res.data.data);
         if (res.data.data.length < 1) {
           setNodata(true);
         } else {
@@ -45,8 +42,6 @@ export default function TransferComponent() {
     });
   };
 
-  // console.log(data, "hasil");
-  // console.log(search, "state seaacrth");
   return (
     <div className="transfer-content w-100 ms-3">
       <div className="dashboard-user-history h-100 ms-2 p-4">

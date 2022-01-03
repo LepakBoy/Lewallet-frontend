@@ -29,7 +29,6 @@ export default function TransferByIdUser() {
   const [validData, setvalidData] = useState(false);
   const router = useRouter();
   const [dataReciever, setDataReciever] = useState([]);
-  console.log(router.query.id, "id dari transge byid");
 
   useEffect(() => {
     axios

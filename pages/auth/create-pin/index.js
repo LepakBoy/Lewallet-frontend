@@ -34,7 +34,7 @@ const CreatePin = (props) => {
   };
 
   const user = props.user;
-  // console.log(user.user.data, "data user dari store di halaman login");
+
   return (
     <body className="body-login d-flex">
       <Jumbotron />

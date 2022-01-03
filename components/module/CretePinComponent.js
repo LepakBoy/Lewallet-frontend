@@ -18,7 +18,6 @@ const CreatePinComponent = (props) => {
   const router = useRouter();
   const auth = props.auth;
   const user = props.user;
-  //   console.log(auth, "crete pin");
   const [pin, setPin] = useState({});
 
   const addPin = (event) => {
@@ -40,7 +39,6 @@ const CreatePinComponent = (props) => {
     const allPin = parseInt(
       pin.pin1 + pin.pin2 + pin.pin3 + pin.pin4 + pin.pin5 + pin.pin6
     );
-    console.log(user.user.id, "allpiiiinnnnnnn");
     axios
       .patch(`/user/pin/${user.user.id}`, { pin: allPin })
       .then((res) => {
@@ -48,7 +46,6 @@ const CreatePinComponent = (props) => {
       })
       .catch((err) => {
         alert("gagal");
-        console.log(err, "err");
       });
   };
 

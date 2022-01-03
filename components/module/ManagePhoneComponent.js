@@ -14,9 +14,6 @@ const ManagePhoneComponent = (props) => {
   const userPhone = props.user.user.noTelp;
   const id = props.user.user.id;
 
-  console.log(phoneNumber, "notelp");
-  console.log(userPhone, "props");
-
   const handleClose = () => {
     setShow(false);
   };
@@ -40,17 +37,12 @@ const ManagePhoneComponent = (props) => {
     axios
       .patch(`/user/profile/${id}`, { noTelp: phoneNumber })
       .then((res) => {
-        console.log(res.data.msg);
         setError(res.data.msg);
         setShow(true);
         props.getUserById(id);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
-
-  console.log(phoneNumber, "satete phone");
 
   return (
     <div className="profile-content w-100 ms-3 ms-2 p-4 pt-5">

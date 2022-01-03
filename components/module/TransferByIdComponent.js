@@ -54,8 +54,6 @@ const TransferByIdComponent = (props) => {
     });
   };
 
-  console.log(dataTransfer);
-
   return (
     <div className="transfer-content w-100 ms-3 ms-2 p-4">
       <Modal

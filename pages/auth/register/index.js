@@ -24,12 +24,9 @@ export default function Register() {
     axios
       .post("/auth/register", form)
       .then((res) => {
-        // console.log(res.data.data.id, "res");
-
         router.push("/auth/login");
       })
       .catch((err) => {
-        console.log(err.response.data.msg, "err");
         setInvalidAuth(err.response.data.msg);
       });
   };

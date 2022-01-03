@@ -34,8 +34,6 @@ export default function TransferSummaryComponet(props) {
 
   const detailStatus = { ...props.reciever, date, ...props.data };
 
-  console.log(detailStatus, "ddetail statu");
-
   const handleClose = () => setShow(false);
 
   const addPin = (event) => {

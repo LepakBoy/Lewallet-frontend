@@ -72,3 +72,11 @@
   border-radius: 8px;
   font-weight: 600;
 }
+.btn-update-image {
+  background-color: #6379f4;
+  color: white;
+  border: 1px solid #3653f3;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 11px;
+}

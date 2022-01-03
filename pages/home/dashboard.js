@@ -9,7 +9,7 @@ import axios from "utils/axios";
 import { getUserById } from "stores/action/dataUser";
 
 export async function getServerSideProps(context) {
-  console.log("ssr is running");
+  // console.log("ssr is running");
   const dataCookie = await getDataCookie(context);
 
   if (!dataCookie.isLogin) {

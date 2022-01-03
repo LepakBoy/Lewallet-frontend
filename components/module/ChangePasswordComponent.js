@@ -23,7 +23,6 @@ const ChangePasswordComponent = (props) => {
 
   const sumbitChangePassword = (e) => {
     e.preventDefault();
-    console.log(formChangePass);
     if (
       formChangePass.newPassword === "" ||
       formChangePass.confirmPassword === ""

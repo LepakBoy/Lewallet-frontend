@@ -3,11 +3,6 @@ import Image from "next/image";
 import JumbotronBg from "assets/img/jumbotron.png";
 
 export default function Navbar() {
-  const handleLogout = () => {
-    console.log("logout");
-    router.push("/login");
-  };
-
   return (
     <div className="jumbotron-login px-5 pt-3">
       <div className="wrapper-jumbotron px-5 position-relative">

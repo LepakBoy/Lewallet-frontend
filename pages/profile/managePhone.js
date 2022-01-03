@@ -6,7 +6,7 @@ import ManagePhoneComponent from "components/module/ManagePhoneComponent";
 import { getDataCookie } from "middleware/authorizationPage";
 
 export async function getServerSideProps(context) {
-  console.log("ssr is running");
+  // console.log("ssr is running");
   const dataCookie = await getDataCookie(context);
 
   if (!dataCookie.isLogin) {

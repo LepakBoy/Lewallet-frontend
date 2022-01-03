@@ -19,12 +19,9 @@ export default function HistoryComponent() {
     axios
       .get(`/transaction/history?page=${page}&limit=${limit}&filter=${filter}`)
       .then((res) => {
-        // console.log(res.data, "res all ");
         setAllHistory(res.data.data);
       })
-      .catch((err) => {
-        console.log(err, "err all");
-      });
+      .catch((err) => {});
   };
 
   const getAllHistory = (pg) => {
@@ -35,16 +32,11 @@ export default function HistoryComponent() {
         }&limit=${limit}&filter=${filter}`
       )
       .then((res) => {
-        // console.log(res.data, "res all ");
         setAllHistory(res.data.data);
         setPaginate({ ...paginate, totalPage: res.data.pagination.totalPage });
       })
-      .catch((err) => {
-        console.log(err, "err all");
-      });
+      .catch((err) => {});
   };
-
-  console.log(paginate, "paginate");
 
   useEffect(() => {
     getAllHistory();
