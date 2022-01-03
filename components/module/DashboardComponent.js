@@ -7,6 +7,9 @@ import Plus from "assets/logo/plus.png";
 import ArrowDnGreen from "assets/logo/arrow-dn-green.png";
 import { connect } from "react-redux";
 import Link from "next/link";
+import axios from "../../utils/axios";
+import { Bar } from "react-chartjs-2";
+import Chart from "chart.js/auto";
 
 const DashboardComponent = (props) => {
   const router = useRouter();
@@ -14,10 +17,39 @@ const DashboardComponent = (props) => {
   const auth = props.auth;
   const { dashboard, history } = props;
   const userPhone = user.user.noTelp;
+  const [resChart, setResChart] = useState([]);
+
+  const getChart = () => {
+    axios.get(`dashboard/${user.user.id}`).then((res) => {
+      setResChart(res.data.data);
+    });
+  };
+
+  useEffect(() => {
+    getChart();
+  }, []);
+
+  const lableChart = [];
+  resChart.listIncome?.map((item) => {
+    lableChart.push(item.day);
+  });
 
   const toTransfer = () => {
     router.push("/transfer");
   };
+
+  const dataIncome = [];
+  resChart.listIncome?.map((item) => {
+    dataIncome.push(item.total);
+  });
+
+  const dataExpense = [];
+  resChart.listExpense?.map((item) => {
+    dataExpense.push(item.total);
+  });
+
+  console.log(dataExpense);
+  console.log(dataIncome);
 
   return (
     <div className="dashboar-content w-100 ms-3">
@@ -81,7 +113,82 @@ const DashboardComponent = (props) => {
               </span>
             </div>
           </div>
-          <div className="chart-history-draw text-center pt-5">SKIP</div>
+          <div className="chart-history-draw text-center" id="h300">
+            <Bar
+              data={{
+                labels: lableChart,
+                datasets: [
+                  {
+                    data: dataIncome,
+                    backgroundColor: ["rgba(255, 99, 132, 0.6)"],
+                    borderColor: ["rgba(255, 99, 132, 1)"],
+                    borderWidth: 2,
+                  },
+                  {
+                    data: dataExpense,
+                    backgroundColor: ["rgba(153, 102, 255, 0.6)"],
+                    borderColor: ["rgba(153, 102, 255, 1)"],
+                    borderWidth: 2,
+                  },
+                ],
+              }}
+              height={400}
+              width={790}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    type: "linear",
+                    display: true,
+                    title: {
+                      display: true,
+                      // text: "Income",
+                      color: "#999999",
+                      font: {
+                        family: "Mulish",
+                      },
+                      padding: {
+                        bottom: 10,
+                      },
+                    },
+                    ticks: {
+                      color: "#999999",
+                      font: {
+                        family: "Mulish",
+                      },
+                    },
+
+                    beginAtZero: true,
+                  },
+                  x: {
+                    title: {
+                      display: true,
+                      // text: "Month",
+                      color: "#999999",
+                      font: {
+                        family: "Mulish",
+                      },
+                      padding: {
+                        top: 10,
+                      },
+                    },
+                    ticks: {
+                      color: "#999999",
+                      font: {
+                        family: "Mulish",
+                      },
+                    },
+                  },
+                },
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+              }}
+            />
+          </div>
         </div>
         <div className="dashboard-user-history w-50 ms-2 p-4">
           <div className="history-header d-flex justify-content-between">

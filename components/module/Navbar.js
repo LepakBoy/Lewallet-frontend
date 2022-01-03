@@ -9,6 +9,8 @@ const Navbar = (props) => {
   const fullName = `${user.user.firstName} ${user.user.lastName}`;
   const userPhone = user.user.noTelp;
 
+  console.log(user.user);
+
   return (
     <nav className="navbar">
       <div className="wrapper-navbar d-flex justify-content-between">

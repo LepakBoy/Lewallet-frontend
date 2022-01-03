@@ -104,6 +104,10 @@ span a {
   border: 1px solid #ffffff;
   font-size: 16px;
 }
+#h300 {
+  height: 300px;
+}
+
 .dashboard-user-chart,
 .dashboard-user-history {
   height: 402px;

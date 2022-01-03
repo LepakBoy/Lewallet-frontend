@@ -8,17 +8,18 @@ export default function HistoryComponent() {
   const [paginate, setPaginate] = useState({
     page: 1,
     limit: 6,
-    filter: "MONTH",
+    filter: "WEEK",
     totalPage: 0,
   });
 
   const { page, limit, filter } = paginate;
 
-  const getAllHistory = () => {
+  const handleFilter = (e) => {
+    setPaginate({ ...paginate, filter: e.target.value });
     axios
       .get(`/transaction/history?page=${page}&limit=${limit}&filter=${filter}`)
       .then((res) => {
-        console.log(res.data.data, "res all ");
+        // console.log(res.data, "res all ");
         setAllHistory(res.data.data);
       })
       .catch((err) => {
@@ -26,15 +27,39 @@ export default function HistoryComponent() {
       });
   };
 
-  console.log(paginate);
+  const getAllHistory = (pg) => {
+    axios
+      .get(
+        `/transaction/history?page=${
+          pg ? pg : page
+        }&limit=${limit}&filter=${filter}`
+      )
+      .then((res) => {
+        // console.log(res.data, "res all ");
+        setAllHistory(res.data.data);
+        setPaginate({ ...paginate, totalPage: res.data.pagination.totalPage });
+      })
+      .catch((err) => {
+        console.log(err, "err all");
+      });
+  };
+
+  console.log(paginate, "paginate");
 
   useEffect(() => {
     getAllHistory();
-  }, [paginate]);
+  }, []);
 
   const changeText = (e) => {
     const { name, value } = e.target;
     setPaginate({ ...paginate, [name]: value });
+    getAllHistory();
+  };
+
+  const handlePagination = (e) => {
+    const selectedPage = e.selected + 1;
+    setPaginate({ ...paginate, page: selectedPage });
+    getAllHistory(selectedPage);
   };
 
   return (
@@ -43,8 +68,11 @@ export default function HistoryComponent() {
         <div className="history-header d-flex justify-content-between">
           <div className="history-title">Transaction History</div>
           <div className="dropdown">
-            <select name="filter" value={paginate.filter} onChange={changeText}>
-              <option>Filter</option>
+            <select
+              name="filter"
+              value={paginate.filter}
+              onChange={handleFilter}
+            >
               {timeFilter.map((item) => (
                 <option key={item} value={item}>
                   {item.toLowerCase()}
@@ -53,7 +81,7 @@ export default function HistoryComponent() {
             </select>
           </div>
         </div>
-        {allHistory.length > 1 ? (
+        {allHistory.length > 0 ? (
           allHistory.map((item, index) => (
             <div className="list-detail-history d-flex mt-3" key={index}>
               <img
@@ -86,8 +114,8 @@ export default function HistoryComponent() {
             previousLabel={false}
             nextLabel={false}
             breakLabel={"..."}
-            pageCount={filter.totalPage}
-            // onPageChange={handlePagination}
+            pageCount={paginate.totalPage}
+            onPageChange={handlePagination}
             containerClassName={"pagination"}
             pageClassName={"page-item"}
             pageLinkClassName={"page-link"}
