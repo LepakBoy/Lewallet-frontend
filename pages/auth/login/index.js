@@ -36,7 +36,6 @@ const Login = (props) => {
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
   const [invalidAuth, setInvalidAuth] = useState(false);
-
   const handleClose = () => {
     setShow(false);
   };
@@ -65,6 +64,10 @@ const Login = (props) => {
 
   const handleChageText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const toResetPassword = () => {
+    router.push("/auth/reset-password");
   };
 
   return (
@@ -121,7 +124,9 @@ const Login = (props) => {
             />
           </div>
           <div className="forgot-password text-end pt-3">
-            <span className="forgot-password-login">Forgot Password?</span>
+            <span className="forgot-password-login" onClick={toResetPassword}>
+              Forgot Password?
+            </span>
           </div>
           {invalidAuth ? (
             <div className="invalid-auth text-center ">

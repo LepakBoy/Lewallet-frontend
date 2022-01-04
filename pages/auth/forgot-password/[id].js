@@ -1,42 +1,52 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Email from "assets/logo/mail.png";
 import Lock from "assets/logo/lock.png";
 import Jumbotron from "components/module/JumbotronAuth";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, FormControl } from "react-bootstrap";
 import axios from "utils/axios";
+import { useRouter } from "next/router";
 
-export default function TR() {
+export default function forgotPassword() {
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
-    email: "",
-    linkDirect: "http://localhost:3000/auth/forgot-password",
+    newPassword: "",
+    confirmPassword: "",
   });
+  const router = useRouter();
 
   const handleClose = () => {
     setShow(false);
   };
 
   const handleChangeText = (e) => {
-    setForm({ ...form, email: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  console.log(form);
 
   const submit = (e) => {
     e.preventDefault();
-    if (!form.email) {
-      setError("Please type your email first");
+    if (!form.newPassword || !form.confirmPassword) {
+      setError("Please enter your new password");
       setShow(true);
       return;
     }
     axios
-      .post(`/auth/forgot-password`, form)
+      .patch(`/auth/reset-password`, {
+        keysChangePassword: router.query.id,
+        ...form,
+      })
       .then((res) => {
+        console.log(res);
         setError(res.data.msg);
         setShow(true);
-        setForm({ ...form, email: "" });
+        setTimeout(() => {
+          router.push("/auth/login");
+        }, 2000);
       })
       .catch((err) => {
+        console.log(err.response);
         setError(err.response.data.msg);
         setShow(true);
       });
@@ -75,12 +85,23 @@ export default function TR() {
             that for you!
           </div>
           <form action="" className="form-login w-100 pt-3 mt-4">
-            <div className="input-form-login d-flex align-items-center">
-              <Image src={Email} alt="" className="email-logo" />
+            <div className="input-form-login d-flex align-items-center mt-5">
+              <Image src={Lock} alt="" className="email-logo" />
               <input
-                type="email"
-                placeholder="Enter your e-mail"
-                className="input-email input-login w-100 border-0 ps-4"
+                name="newPassword"
+                type="password"
+                placeholder="Enter your password"
+                className="input-password input-login w-100 border-0 ps-4"
+                onChange={handleChangeText}
+              />
+            </div>
+            <div className="input-form-login d-flex align-items-center mt-5">
+              <Image src={Lock} alt="" className="email-logo" />
+              <input
+                name="confirmPassword"
+                type="password"
+                placeholder="Enter your password"
+                className="input-password input-login w-100 border-0 ps-4"
                 onChange={handleChangeText}
               />
             </div>
