@@ -6,7 +6,7 @@ import { Modal, Button, FormControl } from "react-bootstrap";
 import axios from "utils/axios";
 import { useRouter } from "next/router";
 
-export default function forgotPassword() {
+export default function ForgotPassword() {
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
