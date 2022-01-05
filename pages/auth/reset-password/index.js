@@ -11,7 +11,7 @@ export default function TR() {
   const [error, setError] = useState("");
   const [form, setForm] = useState({
     email: "",
-    linkDirect: `${process.env.URL_BACKEND_LOCAL}/auth/forgot-password`,
+    linkDirect: `https://lewallet.vercel.app/auth/forgot-password`,
   });
 
   const handleClose = () => {
