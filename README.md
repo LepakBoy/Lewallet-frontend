@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Backgorund
 
-## Getting Started
+Lewallet adalah aplikasi layanan penyimpanan uang yang memungkinkan user menyimpan uang dan transfer uang ke sesama pengguna. Aplikasi ini menggunakan payment method Midtrans sebagai payment gateaway yang digunakan ketikas user akan melakukan topup ke akun mereka masing-masing. Repositorti ini adalah bagian sisi front end dari aplikasi Lewallet dan aplikasi ini dibangun menggunakan framework nextJs
 
-First, run the development server:
+# Fitur - fitur Project
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Fitur - Fitur dalam Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Transfer ke sesama pengguna
+- Top up uang dengan Midtrans payment gateaway
+- Pencarian user
+- History transaksi
+- Peerhitungan uang masuk dan keluar per minggu
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Teknologi Yang Digunakan
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Next Js](https://nextjs.org/docs/getting-started)
+- [Midtrans](https://docs.midtrans.com/)
+- [React redux](https://react-redux.js.org/)
+- [React chartJs 2](https://www.npmjs.com/package/react-chartjs-2)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# Screen Shot
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Landing Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![landing](https://user-images.githubusercontent.com/42567590/148151485-86e6e3fe-5bdd-4e0f-b325-ad628a690a3e.PNG)
 
-## Deploy on Vercel
+- Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![dashboard](https://user-images.githubusercontent.com/42567590/148151541-1ab53bf7-23d1-40ed-b36f-4b6753f4fae6.PNG)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Pin
+
+![pin](https://user-images.githubusercontent.com/42567590/148151567-8075e7d8-b47e-42a8-8a07-788a93da99ec.PNG)
+
+- Transfer
+
+![transfer](https://user-images.githubusercontent.com/42567590/148151576-3a21339f-2c20-46bb-aeba-dc5aeb43eba4.PNG)
+
+- Top Up
+
+![transfer](https://user-images.githubusercontent.com/42567590/148151596-02d0a715-8ebc-479e-b10d-c82ef9ea3f1c.PNG)
+
+# Deploy
+
+-SOON
