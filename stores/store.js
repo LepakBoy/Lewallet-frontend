@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import promiseMiddleware from "redux-promise-middleware";
 import rootReducer from "./reducer";
 
@@ -12,9 +12,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-let store = createStore(
-  persistedReducer,
-  applyMiddleware(promiseMiddleware, logger)
-);
+let store = createStore(persistedReducer, applyMiddleware(promiseMiddleware));
 let persistor = persistStore(store);
 export { persistor, store };

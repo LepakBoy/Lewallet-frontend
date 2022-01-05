@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 export default function TransferStatusComponent(props) {
   const user = useSelector((state) => state.dataUser.user);
   const router = useRouter();
-  useEffect(() => {}, []);
 
   const toHome = () => {
     router.push("/home/dashboard");
