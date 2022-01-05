@@ -41,4 +41,4 @@ Fitur - Fitur dalam Project
 
 # Deploy
 
-- https://lewallet-lepakboy.vercel.app/
+- https://lewallet.vercel.app/
