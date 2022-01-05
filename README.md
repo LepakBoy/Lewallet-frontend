@@ -45,4 +45,4 @@ Fitur - Fitur dalam Project
 
 # Deploy
 
--SOON
+- https://lewallet-lepakboy.vercel.app/profile
