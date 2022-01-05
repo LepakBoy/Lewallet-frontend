@@ -56,7 +56,7 @@ export default function HistoryComponent() {
 
   return (
     <div className="history-content w-100 ms-3">
-      <div className="dashboard-user-history h-100 ms-2 p-4">
+      <div className="dashboard-user-history h-100 ms-2 p-4" id="w100">
         <div className="history-header d-flex justify-content-between">
           <div className="history-title">Transaction History</div>
           <div className="dropdown">
