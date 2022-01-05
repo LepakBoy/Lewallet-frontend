@@ -23,10 +23,6 @@ Fitur - Fitur dalam Project
 
 # Screen Shot
 
-- Landing Page
-
-![landing](https://user-images.githubusercontent.com/42567590/148151485-86e6e3fe-5bdd-4e0f-b325-ad628a690a3e.PNG)
-
 - Dashboard
 
 ![dashboard](https://user-images.githubusercontent.com/42567590/148151541-1ab53bf7-23d1-40ed-b36f-4b6753f4fae6.PNG)
@@ -45,4 +41,4 @@ Fitur - Fitur dalam Project
 
 # Deploy
 
--SOON
+- https://lewallet.vercel.app/
