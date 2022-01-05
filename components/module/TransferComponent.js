@@ -44,7 +44,7 @@ export default function TransferComponent() {
 
   return (
     <div className="transfer-content w-100 ms-3">
-      <div className="dashboard-user-history h-100 ms-2 p-4">
+      <div className="dashboard-user-history h-100 ms-2 p-4" id="w100">
         <div className="transfer-header">
           <div className="transfer-title">Search Reciever</div>
           <form className="form-search-transfer d-flex mt-2">

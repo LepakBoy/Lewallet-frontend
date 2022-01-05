@@ -11,7 +11,7 @@ export default function TR() {
   const [error, setError] = useState("");
   const [form, setForm] = useState({
     email: "",
-    linkDirect: "http://localhost:3000/auth/forgot-password",
+    linkDirect: `${process.env.URL_BACKEND_LOCAL}/auth/forgot-password`,
   });
 
   const handleClose = () => {

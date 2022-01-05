@@ -110,7 +110,9 @@ span a {
 #h300 {
   height: 300px;
 }
-
+#w100 {
+  width: 100%;
+}
 .dashboard-user-chart,
 .dashboard-user-history {
   height: 402px;

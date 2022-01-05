@@ -4,11 +4,16 @@ import { useSelector } from "react-redux";
 import SuccessLogo from "assets/logo/success.png";
 import FailedLogo from "assets/logo/failed.png";
 import DownloadLogo from "assets/logo/download.png";
+import { useRouter } from "next/router";
 
 export default function TransferStatusComponent(props) {
   const user = useSelector((state) => state.dataUser.user);
-
+  const router = useRouter();
   useEffect(() => {}, []);
+
+  const toHome = () => {
+    router.push("/home/dashboard");
+  };
 
   const { detail } = props;
 
@@ -81,12 +86,15 @@ export default function TransferStatusComponent(props) {
           </div>
         </div>
         <div className="button-continue mt-4 text-end">
-          <button className="button-download-pdf px-4 py-2 mt-5 border-0">
+          {/* <button className="button-download-pdf px-4 py-2 mt-5 border-0">
             <Image src={DownloadLogo} alt="" />
             Download PDF
-          </button>
-          <button className="button-continue-transfer px-4 mt-5 py-2 border-0">
-            Try Again
+          </button> */}
+          <button
+            onClick={toHome}
+            className="button-continue-transfer px-4 mt-5 py-2 border-0"
+          >
+            Done
           </button>
         </div>
       </div>
